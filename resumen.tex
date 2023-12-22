@@ -3,7 +3,7 @@
 \usepackage{graphicx}
 \usepackage{indentfirst}
 \usepackage{microtype}
-
+\usepackage[hidelinks]{hyperref}
 
 
 \title{Arquitectura de software [75.73] - Resumen Teórico}
@@ -109,7 +109,7 @@
 				\begin{enumerate}
 					\item \textbf{Redundancia activa}: Esta táctica implica implementar componentes o servicios duplicados que se ejecutan simultáneamente, donde uno puede controlar y reanudar las operaciones en caso de que falle el componente principal. Esto permite una recuperación rápida y mejora la disponibilidad del sistema.
 					
-					\item \textbf{Redundancia activa}: Similar a la redundancia activa, con la diferencia de que requiere una intervención manual para activar el componente redundante.
+					\item \textbf{Redundancia pasiva}: Similar a la redundancia activa, con la diferencia de que requiere una intervención manual para activar el componente redundante.
 					
 					\item \textbf{Repuesto}: Esta táctica consiste en tener componentes de repuesto disponibles y listos para reemplazar rápidamente aquellos que fallen.
 					
@@ -1665,9 +1665,9 @@
 			
 			\item {\textbf{Mapper (Base Pattern)}}:  Es un objeto que establece la comunicación entre dos objetos independientes. Su objetivo es transferir datos entre estos objetos
 			
-			\item {\textbf{Table Data Gateway}}: Es un objeto que actúa como un gateway para una tabla de base de datos. Cada instancia maneja todas las filas de la tabla. Se utiliza comúnmente en patrones Transaction Script o Table Module.
-			
-			\item {\textbf{Row Data Gateway}}: Es un objeto que actúa como un gateway para un solo registro (fila) en una fuente de datos. Existe una instancia por cada fila. También se utiliza en patrones Transaction Script.
+			\item {\textbf{Table Data Gateway}}: Este objeto actúa como un gateway para una tabla de base de datos, manejando todas las filas de la tabla. Se utiliza comúnmente en patrones como Transaction Script o Table Module.
+
+            \item {\textbf{Row Data Gateway}}: Este objeto actúa como un gateway para un solo registro (fila) en una fuente de datos, teniendo una instancia por cada fila. También se emplea en patrones Transaction Script.
 			
 			\item {\textbf{Data Mapper}}: Es un objeto que envuelve una fila en una tabla o vista de una base de datos y encapsula el acceso a la base de datos, añadiendo lógica de dominio a esos datos. 
 			
@@ -1717,6 +1717,118 @@
 			\item {\textbf{Identity Map}}: Asegura que cada objeto se cargue solo una vez en memoria manteniendo una tabla hash (mapa) que almacena todos los objetos cargados.
 			
 		\end{enumerate}
-		
-		
+
+
+
+
+
+
+  \section{Preguntas que me hicieron en el final}
+  Si te toca Christian, muy probablemente te va a pedir definiciones. Si te toca Guille, te va a hacer pensar, pero es un tipazo.
+   \subsection{Preguntas de Christian}
+    \subsubsection{¿Qué es una SLA?}
+    
+    \textbf{\hyperlink{page.2}{Respuesta}}
+
+    \subsubsection{¿Cuál es la diferencia entre escalabilidad y elasticidad?}
+
+    La diferencia es que la escalabilidad es la capacidad del sistema para adaptarse al aumento de usuarios, transacciones y niveles de actividad, entre otros factores. 
+    Y la Elasticidad se refiere a la capacidad de un sistema para adaptarse y ajustar sus recursos de manera dinámica y automática en respuesta a cambios en la carga de trabajo o demanda.
+
+
+    \subsubsection{¿Qué dice la regla de los 5 9's?}
+
+    Link: \textbf{\hyperlink{page.6}{Respuesta}}
+
+
+    \subsubsection{¿Qué es el bandwidth?}
+
+    Link: \textbf{\hyperlink{page.9}{Respuesta}}
+
+    
+    \subsubsection{¿Cuáles son las tácticas para la disponibilidad?}
+    
+    Link: \textbf{\hyperlink{page.7}{Respuesta}}
+
+    \subsubsection{¿Cómo se pueden relacionar la arquitectura \textbf{stateless} con un \textbf{Load Balancer}?}
+    
+    Link: \hyperlink{page.23}{Respuesta: Tercer párrafo de Load Balancer}
+
+    \subsubsection{¿Qué es la visibilidad?}
+    
+    Link: \hyperlink{page.14}{Respuesta}
+    
+    \subsubsection{¿Por qué las bases de datos relacionales no son escalables?}
+    
+    \hyperlink{page.45}{Link: \textit{Respuesta}}
+
+    \subsubsection{¿Qué es Code On Demand?}
+    
+    \hyperlink{page.26}{Link: \textit{Respuesta}}
+
+
+    \subsubsection{¿Qué es el sharding?}
+    
+    \hyperlink{page.43}{Link: \textit{Respuesta}}
+
+
+   \subsection{Preguntas de Guille}
+   
+   \subsubsection{Si tuvieras un sistema como WhatsApp ¿qué atributos de calidad pensás que prioriza?}
+    Acá la podes chamuyar, yo dije que priorizaba los siguientes: 
+    \begin{itemize}
+        \item Disponibilidad
+        \item Perfomance
+        \item Seguridad
+        \item Portabilidad
+    \end{itemize}
+
+  \subsubsection{Si tuvieras otro sistema como un Home Banking ¿prioriza los mismo atributos que Whatsapp? ¿Cuáles cambia?}
+    Acá haces lo mismo, la podes chamuyar, yo dije que no, no prioriza las mismas, dije que priorizaba los siguientes: 
+    \begin{itemize}
+        \item Seguridad
+        \item disponibilidad
+    \end{itemize}
+
+    Porque realmente no importa si el homebanking es perfomante o no, como tambien con la portabilidad. 
+
+
+  \subsubsection{¿Técnicas de disponibilidad?}
+    Link: \textbf{\hyperlink{page.7}{Respuesta}}
+
+  \subsubsection{¿Cómo es la arquitectura de Client-Stateless-Server?}
+    Link: \textbf{\hyperlink{page.24}{Respuesta}}
+
+  \subsubsection{Que un sistema sea stateless ¿beneficia a la escalabilidad? ¿O la perjudica? }
+    Link: \textbf{\hyperlink{page.12}{Respuesta: En la parte de Tácticas}}
+
+  \subsubsection{¿Qué es la HyperMedia en Rest?}
+    Link: \textbf{\hyperlink{page.34}{Respuesta}}
+
+    
+  \subsubsection{¿Cuales son los riesgos de usar Cloud Computing?}
+  El consumidor y el proveedor, con acceso privilegiado, tienen la responsabilidad de proteger sus datos. La dependencia de SLAs y la falta de controlabilidad en comparación con soluciones on-premise son problemas. La transferencia de datos entre proveedores cloud puede ser difícil, y las implicaciones legales, como la ubicación de datos y las leyes locales, plantean problemas. Debido a las leyes de ciertas jurisdicciones, existe el peligro de revelación no autorizada.
+
+  \subsubsection{¿Qué es el auto-scaling? ¿Qué atributos de calidad favorece?}
+    Link: \textbf{\hyperlink{page.41}{Respuesta}}
+
+  \subsubsection{¿Por qué implementaria colas de mensajes entre los componentes?}
+  
+  Permiten el desacoplamiento entre componentes, lo que facilita la operación independiente y mejora la flexibilidad. Además, al procesar mensajes concurrentemente, administrar cargas variables y mejorar la capacidad de respuesta, promueven la escalabilidad horizontal. Al encolar y procesar mensajes lentamente, también son útiles para gestionar picos de carga, evitando la pérdida de datos o la degradación del rendimiento.
+
+  \subsubsection{Si un worker agarra y procesa un pedido, y el worker falla en el medio ¿qué patrones podriamos implementar para arreglarlo?}
+  Link: \textbf{\hyperlink{page.43}{Respuesta: Retry o Circuit Breaker}}
+
+  \subsubsection{¿Qué es el sharding en NoSQL? ¿Puede haber replication sin sharding?}
+  Link: \textbf{\hyperlink{page.48}{Respuesta: De sharding}} 
+
+  Con respecto a la segunda pregunta: 
+
+  Sí,  es posible sin sharding. La replicación crea copias de datos idénticas en varios nodos para garantizar la disponibilidad y la tolerancia a fallos. La replicación se enfoca en la redundancia y la disponibilidad, mientras que el sharding se enfoca en la distribución horizontal de los datos.
+
+
+
+  \subsubsection{¿Cuáles son las formas de organizar la lógica de negocio?}
+  Link: \textbf{\hyperlink{page.51}{Respuesta}} 
+
 \end{document}
