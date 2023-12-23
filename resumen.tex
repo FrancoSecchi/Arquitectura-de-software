@@ -29,7 +29,7 @@
 			
 			La separación entre módulos y componentes dinámicos, como se sugiere en el paradigma C\&C, permite un diseño arquitectónico independiente del tiempo de ejecución. Los módulos proporcionan vistas estructurales y estáticas del sistema, mientras que los componentes dinámicos representan la ejecución real del programa con todas sus versiones de tiempo de ejecución y comunicaciones.
 		
-		\section{SLA}
+		\section{SLA}\label{sec:sla}
 		Un SLA, también conocido como Acuerdo de Nivel de Servicio (Service Level Agreement), es un contrato formal que establece los niveles de rendimiento y calidad que un proveedor de servicios se compromete a brindar a sus clientes. Un SLA establece las normas y expectativas en términos de disponibilidad, tiempo de respuesta, tiempo de resolución, calidad del servicio y otros factores importantes de rendimiento.
 		
 		
@@ -70,7 +70,7 @@
 				
 			\end{enumerate}
 			
-		\subsubsection{Regla de los cinco 9's}
+		\subsubsection{Regla de los cinco 9's}\label{sec:regla_nueves}
 		Es una métrica que se utiliza para medir la confiabilidad y disponibilidad de un sistema o servicio. Se expresa como un porcentaje y significa que el sistema está disponible el 99.999\% del tiempo.
 		
 		Para calcular la disponibilidad en términos de "nueves", se considera el porcentaje de tiempo en el que el sistema está en funcionamiento en un año. Aquí está el desglose:
@@ -86,7 +86,7 @@
 		\end{enumerate}
 		
 		
-		\subsubsection{Tácticas PDR}
+		\subsubsection{Tácticas PDR}\label{sec:tacticas_disponibilidad}
 			Algunas técnicas PDR \footnote{El nombre PDR no es oficial, hice la abrevicación por comodidad. Es más, PDR es un nombre de una técnica para autos (Paintless Dent Repair)... Mira vos che. } (de prevención, detección y recuperación), en caso de que el atributo falle. que se pueden utilizar son: 
 			
 			\begin{itemize}		
@@ -159,7 +159,7 @@
  			\item \textbf{Capacity}: Se refiere a la carga máxima que puede soportar, es decir, el rendimiento máximo que el sistema puede manejar de manera efectiva. Para medir la capacidad, las personas suelen utilizar el concepto de transacciones por segundo (tx/s, tps). Estas mediciones generalmente se realizan a través de pruebas de carga que utilizan transacciones representativas, como las más frecuentes o típicas, para evaluar si el sistema cumple con los requisitos establecidos.	
  			
  			 			
- 			\item \textbf{Bandwidth}: Representa el rendimiento máximo disponible en un canal de comunicación en particular. Esta es una medida importante para comprender la capacidad de transmisión de la red. Además, "ancho de banda utilizable" se refiere a la porción de ancho de banda disponible para la aplicación en cuestión que es relevante para determinar el rendimiento de la red en el contexto específico de la aplicación.
+ 			\item \textbf{Bandwidth}\label{sec:bandwidth}: Representa el rendimiento máximo disponible en un canal de comunicación en particular. Esta es una medida importante para comprender la capacidad de transmisión de la red. Además, "ancho de banda utilizable" se refiere a la porción de ancho de banda disponible para la aplicación en cuestión que es relevante para determinar el rendimiento de la red en el contexto específico de la aplicación.
  			
  						
  			\item \textbf{Estilos de Interacción}: El estilo de la arquitectura juega un papel importante en la forma en que se comunican los componentes y, por lo tanto, afecta directamente el rendimiento de la red. Los estilos más efectivos buscan minimizar el acceso a la red, llegando incluso a evitar su uso en circunstancias apropiadas. Esto se logra mediante la reducción de la frecuencia de las interacciones y la reutilización de interacciones anteriores, lo que optimiza el rendimiento de la red.
@@ -252,7 +252,7 @@
 	\subsubsection{Tácticas}
 		
 		\begin{itemize}		
-				\item \textbf{Stateless}: implica diseñar los componentes del sistema de tal manera que no tengan información sobre el estado de las interacciones anteriores con el cliente. El tratamiento de cada solicitud del cliente se lleva a cabo de manera independiente, sin depender de ninguna información previamente almacenada. Esto facilita la escalabilidad horizontal porque se pueden agregar más instancias del componente sin preocuparse por el estado compartido.
+				\item \textbf{Stateless}\label{sec:escalabilidad_tacticas}: implica diseñar los componentes del sistema de tal manera que no tengan información sobre el estado de las interacciones anteriores con el cliente. El tratamiento de cada solicitud del cliente se lleva a cabo de manera independiente, sin depender de ninguna información previamente almacenada. Esto facilita la escalabilidad horizontal porque se pueden agregar más instancias del componente sin preocuparse por el estado compartido.
 				
 				\item \textbf{Horizontal Scale}: Es una estrategia para aumentar la capacidad del sistema agregando más instancias o nodos en paralelo. Para distribuir la carga, se agregan más componentes idénticos en lugar de aumentar los recursos de un solo componente. Es una buena manera de hacer frente al aumento de la demanda sin comprometer el rendimiento.
 				
@@ -336,7 +336,7 @@
 				
 		\end{itemize}
 		
-		\subsection{Visibility \small{(Visibilidad)} }
+		\subsection{Visibility \small{(Visibilidad)} }\label{sec:visibilidad}
 		Se refiere a la capacidad de un sistema de software para proporcionar información clara, relevante y comprensible sobre su funcionamiento interno y comportamiento externo. Por lo tanto, la visibilidad se refiere a la capacidad de observar y comprender lo que está sucediendo dentro del sistema y cómo interactúa con su entorno.
 		
 		Un sistema que tiene una alta visibilidad puede ofrecer herramientas y mecanismos, como por ejemplo: 
@@ -671,7 +671,7 @@
 		
 		En cuestión a los beneficios, se suman los beneficios entre CS y LS.
 		
-		\subsubsection{Load Balancer}
+		\subsubsection{Load Balancer}\label{sec:load_balancer}
 		Es una parte importante de las arquitecturas de sistemas distribuidos que se encarga de recibir solicitudes (requests) de los clientes y distribuirlas entre un grupo de servidores, luego direccionando la respuesta del servidor seleccionado al cliente correspondiente. 
 		
 		Su objetivo principal es mejorar el rendimiento y la disponibilidad del sistema asegurándose de que el tráfico de las solicitudes se distribuya de manera equitativa y se gestione de manera eficiente entre los servidores.
@@ -714,7 +714,7 @@
 			
 		\end{itemize}
 		
-		\subsubsection{Client-Stateless-Server (CSS)}
+		\subsubsection{Client-Stateless-Server (CSS)}\label{sec:client-statless-server}
 		Es un método arquitectónico que proviene del estilo "Client-Server" (CS), pero tiene una limitación: no se puede almacenar el estado de la sesión en el componente servidor. En este caso, el propio cliente debe proporcionar toda la información necesaria para comprender las solicitudes del cliente, y el servidor no mantiene ningún tipo de contexto o estado de la sesión. El cliente tiene todo el control sobre el estado.
 		
 		¿Que es el estado? Cualquier información sobre la sesión del cliente que el servidor debe recordar y mantener entre varias solicitudes se conoce como estado.
@@ -840,7 +840,7 @@
 			\end{itemize}
 		
 		
-		\subsubsection{Code on Demand (COD)}
+		\subsubsection{Code on Demand (COD)}\label{sec:code_on_demand}
 		Esta arquitectura, la cual deriva de VM y CS, el cliente tiene los recursos (como CPU, memoria o acceso a una fuente de datos) para ejecutar un servicio, pero no tiene el conocimiento o la experiencia necesarios para realizar la operación de manera efectiva. El cliente envía una solicitud al servidor pidiéndole el código que representa el "know-how" necesario en lugar de enviar los datos al servidor para que se realice el procesamiento. El cliente ejecuta el código del servidor localmente para completar la operación.
 		
 		JavaScript (JS) en aplicaciones web es un ejemplo común de la arquitectura "Code on Demand". En este caso, el cliente tiene la capacidad de ejecutar código JavaScript, pero el servidor puede proporcionar scripts adicionales que se ejecutan localmente en el navegador del cliente para mejorar la experiencia del usuario o proporcionar funcionalidades adicionales.
@@ -1101,7 +1101,7 @@
 		
 		Bueno, en REST,  Application State y el Resource State se manejan de manera independiente. El servidor no almacena datos sobre el estado de la aplicación para cada cliente porque REST es una arquitectura sin estado. Por el contrario, el estado de la solicitud se almacena en el cliente y se envía al servidor para cada solicitud relevante. El servidor responde con el estado de recursos actualizado en respuesta a la solicitud del cliente.
 		
-		\subsubsection{HyperMedia}
+		\subsubsection{HyperMedia}\label{sec:hypermedia}
 		
 		En REST este concepto es clave, Hypermedia significa que la información de control de aplicación puede estar dentro o sobre la presentación de la información. Esta información sobre el control de aplicación se representa en un lenguaje que las máquinas pueden leer y se utiliza para conectar recursos y describir sus capacidades.
 		
@@ -1352,7 +1352,7 @@
 		Además, los microservicios no están limitados an una sola tecnología, lo que significa que cada microservicio puede utilizar la tecnología más adecuada para su función particular. Un mecanismo de descubrimiento de servicios, que asigna servicios a los nodos y permite identificar fallas y reequilibrar los servicios según sea necesario, es necesario para que los microservicios se comuniquen entre sí.
 		
 		\subsection{Usage Patterns}
-		\subsubsection{Auto-Scaling}
+		\subsubsection{Auto-Scaling}\label{sec:auto_scaling}
 		Consiste en implementar un proceso de asignación dinámica de recursos, como nodos, almacenamiento y colas, para adecuar la capacidad de la aplicación a la demanda en tiempo real, siguiendo una estrategia de "match strategy".
 		
 		Esto favorece a la Performance, Scalability, Elasticity.
@@ -1414,7 +1414,7 @@
 		
 		Esto favorece a la Performance, Availability.
 		
-		\subsubsection{Retry}
+		\subsubsection{Retry} \label{sec:retry}
 		Este patrón sirve para manejar fallas temporales de los servicios que consumen. Implica la implementación lógica de reintentos (retry) que consideren un lapso de tiempo(delay) entre cada reintento. Este punto de control proporciona información sobre el estado del servicio y responde a solicitudes específicas.
 		
 		La definición de una política de reintentos adecuada debe tener en cuenta la cantidad de reintentos y el tiempo que transcurre entre ellos. La política de repetición debe ajustarse al tipo de interacción cliente-servidor para evitar una sobrecarga del servicio. Los reintentos son menos peligrosos si la operación es idempotente (no tiene efectos secundarios cuando se repite).
@@ -1424,7 +1424,7 @@
 		
 		Esto favorece a la Availability.
 		
-		\subsubsection{Circuit Breaker}
+		\subsubsection{Circuit Breaker}\label{sec:circuit_breaker}
 		Este patrón sirve para evitar que las aplicaciones invoquen servicios que están caídos y detectar cuando el problema está resuelto. Implica la implementación de un proxy que registre la	cantidad de fallas recientes y use esos	datos para decidir si invocar el servicio o	si fallar inmediatamente.
 		
 		El Circuit Breaker tiene tres estados principales:
@@ -1446,7 +1446,7 @@
 		Esto favorece a la Availability, Performance.
 		
 				
-		\subsubsection{Sharding}
+		\subsubsection{Sharding}\label{sec:sharding_generico}
 		Este patrón sirve para superar las limitaciones de espacio, recursos, ancho de banda y geograficas de un almacenamiento de datos en 1 server. Implica en dividir el almacenamiento de datos en particiones "horizontales" (shards).
 		
 		Cada shard funciona en su propio servidor y es independiente del resto, lo que permite escalar horizontalmente y equilibrar la carga entre shards. La ubicación geográfica de los shards también puede optimizarse para estar cerca de los usuarios que accederán a los datos.
@@ -1490,7 +1490,7 @@
 		La integridad de los datos no se limita a las aplicaciones. Las aplicaciones pueden tener diferentes propietarios y requisitos, lo que dificulta la distribución de la responsabilidad de garantizar la integridad de los datos. Los conflictos y las dificultades administrativas pueden surgir como resultado de la presencia de varios propietarios. Dado que la integración compartida de bases de datos requiere una gestión sólida y bien respaldada para garantizar la consistencia y la confiabilidad de los datos entre las aplicaciones involucradas, los motores de bases de datos deben estar equipados con un soporte completo para abordar estos desafíos.
 		
 				
-		\subsubsection{Escalabilidad}
+		\subsubsection{Escalabilidad}\label{sec:escalabilidad_sql}
 		Es una preocupación cada vez mayor para los sistemas que deben manejar una mayor cantidad de usuarios y una mayor cantidad de datos. Facebook, Google, Amazon y Twitter son plataformas notables con grandes cantidades de tráfico y datos. El aumento de la demanda requiere mayores recursos, y la escalabilidad vertical (mejorando un solo servidor) con frecuencia tiene limitaciones.
 		
 		La escalabilidad horizontal obtenida a través de la formación de clústeres se busca como solución en respuesta. Esto implica distribuir la carga mediante el agregado de varios servidores, que generalmente están equipados con hardware más económico. Esta técnica mejora el rendimiento y ofrece resistencia a fallos al eliminar puntos de ruptura específicos.
@@ -1540,7 +1540,7 @@
 			\item {\textbf{Key-Column-Family}}: Es una variante que organiza los aggregates utilizando una estructura de dos niveles. La primera clave identifica la fila o el conjunto de interés, y también se puede elegir la columna dentro del conjunto. Una familia de columnas incluye cada columna, y se supone que los datos de una familia de columnas se acceden normalmente en forma conjunta. Este modelo, que se basa en BigTable de Google, permite un almacenamiento optimizado para usos particulares.
 		\end{itemize}
 		\subsection{Modelos de Distribución}
-		\subsubsection{Sharding}
+		\subsubsection{Sharding}\label{sec:sharding_nosql}
 		Es un método que permite a los usuarios acceder a diferentes partes de los datos en servidores individuales para reducir la carga y mejorar el rendimiento al distribuir diferentes partes de los datos en diferentes servidores. En resumen, la idea es colocar diferentes partes de los datos en diferentes servers.
 		
 		El caso ideal sería que cada usuario se comunique con un servidor específico para obtener una respuesta rápida y distribuir la carga de manera equitativa. Sin embargo, crear este caso ideal es difícil y requiere tener en cuenta una variedad de factores. Estos incluyen el criterio de distribución de datos entre nodos (como los apellidos A.D., E.F., R.Z.), el uso de zonas geográficas para reducir la latencia y el diseño de aggregates para agrupar datos relacionados.
@@ -1629,7 +1629,7 @@
 		
 		Se utilizan una variedad de patrones de diseño arquitectónico y de programación para organizar y estructurar el código de las aplicaciones empresariales. 
 		
-		\subsection{Organización lógica del Negocio}
+		\subsection{Organización lógica del Negocio}\label{sec:orga_logica_negocios}
 		\subsubsection{Transaction Script}
 		Es un patrón de diseño utilizado para gestionar la lógica de negocio de manera procedural o mediante funciones estáticas. En este patrón, cada acción o transacción se implementa como un procedimiento (script) independiente que procesa la entrada del usuario, accede a la base de datos, ejecuta la lógica del dominio y formatea el resultado para su presentación en la interfaz de usuario.
 		\subsubsection{Domain Model}
@@ -1727,8 +1727,7 @@
   Si te toca Christian, muy probablemente te va a pedir definiciones. Si te toca Guille, te va a hacer pensar, pero es un tipazo.
    \subsection{Preguntas de Christian}
     \subsubsection{¿Qué es una SLA?}
-    
-    \textbf{\hyperlink{page.2}{Respuesta}}
+    Respuesta - link: \textbf{~\nameref{sec:sla}}
 
     \subsubsection{¿Cuál es la diferencia entre escalabilidad y elasticidad?}
 
@@ -1738,40 +1737,38 @@
 
     \subsubsection{¿Qué dice la regla de los 5 9's?}
 
-    Link: \textbf{\hyperlink{page.6}{Respuesta}}
+    Respuesta - link: \textbf{~\nameref{sec:regla_nueves}}
 
 
     \subsubsection{¿Qué es el bandwidth?}
 
-    Link: \textbf{\hyperlink{page.9}{Respuesta}}
+    Respuesta - link: \textbf{~\nameref{sec:bandwidth}} 
 
     
     \subsubsection{¿Cuáles son las tácticas para la disponibilidad?}
     
-    Link: \textbf{\hyperlink{page.7}{Respuesta}}
+    Respuesta - link: Network perfomance - \textbf{~\nameref{sec:tacticas_disponibilidad}}
 
     \subsubsection{¿Cómo se pueden relacionar la arquitectura \textbf{stateless} con un \textbf{Load Balancer}?}
     
-    Link: \hyperlink{page.23}{Respuesta: Tercer párrafo de Load Balancer}
+    Respuesta - link: 3-er párrafo - \textbf{~\nameref{sec:load_balancer}}
 
     \subsubsection{¿Qué es la visibilidad?}
-    
-    Link: \hyperlink{page.14}{Respuesta}
+    Respuesta - link: \textbf{~\nameref{sec:visibilidad}}
     
     \subsubsection{¿Por qué las bases de datos relacionales no son escalables?}
-    
-    \hyperlink{page.45}{Link: \textit{Respuesta}}
+
+    Respuesta - link: \textbf{~\nameref{sec:escalabilidad_sql}}
 
     \subsubsection{¿Qué es Code On Demand?}
-    
-    \hyperlink{page.26}{Link: \textit{Respuesta}}
+
+    Respuesta - link: \textbf{~\nameref{sec:code_on_demand}}
 
 
     \subsubsection{¿Qué es el sharding?}
+
+    Respuesta - link: \textbf{~\nameref{sec:sharding_generico}}
     
-    \hyperlink{page.43}{Link: \textit{Respuesta}}
-
-
    \subsection{Preguntas de Guille}
    
    \subsubsection{Si tuvieras un sistema como WhatsApp ¿qué atributos de calidad pensás que prioriza?}
@@ -1794,34 +1791,38 @@
 
 
   \subsubsection{¿Técnicas de disponibilidad?}
-    Link: \textbf{\hyperlink{page.7}{Respuesta}}
+    Respuesta - link: \textbf{~\nameref{sec:tacticas_disponibilidad}}
 
   \subsubsection{¿Cómo es la arquitectura de Client-Stateless-Server?}
+    Respuesta - link: \textbf{~\nameref{sec:client-statless-server}}
+
     Link: \textbf{\hyperlink{page.24}{Respuesta}}
 
   \subsubsection{Que un sistema sea stateless ¿beneficia a la escalabilidad? ¿O la perjudica? }
+    Respuesta - link: \textbf{~\nameref{sec:escalabilidad_tacticas}}
     Link: \textbf{\hyperlink{page.12}{Respuesta: En la parte de Tácticas}}
 
   \subsubsection{¿Qué es la HyperMedia en Rest?}
-    Link: \textbf{\hyperlink{page.34}{Respuesta}}
-
+    Respuesta - link: \textbf{~\nameref{sec:hypermedia}}
     
   \subsubsection{¿Cuales son los riesgos de usar Cloud Computing?}
   El consumidor y el proveedor, con acceso privilegiado, tienen la responsabilidad de proteger sus datos. La dependencia de SLAs y la falta de controlabilidad en comparación con soluciones on-premise son problemas. La transferencia de datos entre proveedores cloud puede ser difícil, y las implicaciones legales, como la ubicación de datos y las leyes locales, plantean problemas. Debido a las leyes de ciertas jurisdicciones, existe el peligro de revelación no autorizada.
 
   \subsubsection{¿Qué es el auto-scaling? ¿Qué atributos de calidad favorece?}
-    Link: \textbf{\hyperlink{page.41}{Respuesta}}
+    Respuesta - link: \textbf{~\nameref{sec:auto_scaling}}
 
   \subsubsection{¿Por qué implementaria colas de mensajes entre los componentes?}
   
   Permiten el desacoplamiento entre componentes, lo que facilita la operación independiente y mejora la flexibilidad. Además, al procesar mensajes concurrentemente, administrar cargas variables y mejorar la capacidad de respuesta, promueven la escalabilidad horizontal. Al encolar y procesar mensajes lentamente, también son útiles para gestionar picos de carga, evitando la pérdida de datos o la degradación del rendimiento.
 
   \subsubsection{Si un worker agarra y procesa un pedido, y el worker falla en el medio ¿qué patrones podriamos implementar para arreglarlo?}
-  Link: \textbf{\hyperlink{page.43}{Respuesta: Retry o Circuit Breaker}}
+
+  Respuesta - link: \textbf{~\nameref{sec:retry}} o \textbf{~\nameref{sec:circuit_breaker}}
+
 
   \subsubsection{¿Qué es el sharding en NoSQL? ¿Puede haber replication sin sharding?}
-  Link: \textbf{\hyperlink{page.48}{Respuesta: De sharding}} 
-
+  Respuesta primera pregunta - link: \textbf{~\nameref{sec:sharding_nosql}}
+  
   Con respecto a la segunda pregunta: 
 
   Sí,  es posible sin sharding. La replicación crea copias de datos idénticas en varios nodos para garantizar la disponibilidad y la tolerancia a fallos. La replicación se enfoca en la redundancia y la disponibilidad, mientras que el sharding se enfoca en la distribución horizontal de los datos.
@@ -1829,6 +1830,6 @@
 
 
   \subsubsection{¿Cuáles son las formas de organizar la lógica de negocio?}
-  Link: \textbf{\hyperlink{page.51}{Respuesta}} 
+  Respuesta - link: \textbf{~\nameref{sec:orga_logica_negocios}}
 
 \end{document}
