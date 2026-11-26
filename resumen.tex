@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{indentfirst}
 \usepackage{microtype}
@@ -10,31 +12,32 @@
 \author{Franco Secchi}
 \begin{document}
 	\maketitle
-	\renewcommand{\contentsname}{Contenidos} 
+	\renewcommand{\contentsname}{Contenidos}
+	\renewcommand{\figurename}{Figura}
 
 	\tableofcontents
 	\newpage
 		\section {Introducción a la arquitectura de software}
 			La arquitectura de software es un conjunto de \textbf{estructuras} fundamentales que permite razonar sobre un sistema, compuesto por \textbf{elementos} de software, sus \textbf{relaciones} y \textbf{propiedades}.
 			
-			Cuando hablamos de \textbf{estructuras}, nos referimos a un conjunto de elementos unidos por relaciones. Los \textbf{elementos}, a su vez, se dividen en diferentes tipos, entre ellos:
+			Cuando hablamos de \textbf{estructuras}, nos referimos a un conjunto de elementos unidos por relaciones. Las \textbf{estructuras}, a su vez, se clasifican en distintos tipos, entre ellos:
 			\begin{enumerate}
 				\item \textbf{Módulos (Module)}: Los módulos son unidades de implementación a las que se les asignan responsabilidades específicas. Son una forma de dividir y organizar el código y las responsabilidades del software en partes más pequeñas y manejables, facilitando la modularización y el desarrollo del sistema.
 				
-				\item \textbf{Componentes y controles (C\&C)}: El modelo arquitectónico C\&C se enfoca en dividir la responsabilidad de controlar y coordinar los componentes funcionales en un sistema de software. Los componentes del controlador toman decisiones y controlan el flujo del programa, mientras que los componentes de coordinación se encargan de la comunicación y sincronización entre otros componentes del sistema.
+				\item \textbf{Componentes y conectores (C\&C)}: Describen cómo se comporta el sistema en tiempo de ejecución. Los componentes son las unidades que existen en ejecución (procesos, servicios, clientes, servidores, repositorios), mientras que los conectores son los mecanismos de interacción entre ellos (llamadas, mensajes, pipes, protocolos).
 				
 			\end{enumerate}
 			
-			Además de las estructuras mencionadas, también se considera la \textbf{Allocation} de componentes de software para componentes de hardware. El modelo de atribución se refiere a cómo se distribuye e implementa el software en el hardware disponible, lo que determina qué componentes, servidores o dispositivos del sistema se ejecutarán.
+			Además de las estructuras mencionadas, también se consideran las estructuras de asignación (\textbf{Allocation}), que vinculan los elementos de software con elementos de su entorno, como el hardware. Describen cómo se distribuye e implementa el software en el hardware disponible, lo que determina en qué servidores o dispositivos se ejecutará cada componente.
 			
-			La separación entre módulos y componentes dinámicos, como se sugiere en el paradigma C\&C, permite un diseño arquitectónico independiente del tiempo de ejecución. Los módulos proporcionan vistas estructurales y estáticas del sistema, mientras que los componentes dinámicos representan la ejecución real del programa con todas sus versiones de tiempo de ejecución y comunicaciones.
+			La separación entre módulos y componentes dinámicos, como se plantea en las estructuras C\&C, permite razonar sobre el diseño estático por separado del comportamiento en tiempo de ejecución. Los módulos proporcionan vistas estructurales y estáticas del sistema, mientras que los componentes dinámicos representan la ejecución real del programa con todas sus instancias en tiempo de ejecución y sus comunicaciones.
 		
 		\section{SLA}\label{sec:sla}
 		Un SLA, también conocido como Acuerdo de Nivel de Servicio (Service Level Agreement), es un contrato formal que establece los niveles de rendimiento y calidad que un proveedor de servicios se compromete a brindar a sus clientes. Un SLA establece las normas y expectativas en términos de disponibilidad, tiempo de respuesta, tiempo de resolución, calidad del servicio y otros factores importantes de rendimiento.
 		
 		
 		\section{Atributos de calidad y Tácticas}
-			Los atributos de calidad (también conocidos como requisitos no funcionales) son una \textbf{propiedad} \textit{mensurable o testeable del sistema} .
+			Un atributo de calidad (también conocido como requisito no funcional) es una \textbf{propiedad} \textit{mensurable o testeable del sistema}.
 			
 			Los atributos de calidad son necesarios para evaluar y medir qué tan bien un sistema cumple con los estándares y expectativas del usuario, así como para garantizar que el software funcione de manera óptima y eficiente.
 
@@ -44,7 +47,7 @@
 			
 			Las tácticas son técnicas o enfoques específicos que se utilizan para lograr atributos de calidad en la arquitectura de software. Cada atributo de calidad puede requerir tácticas específicas para mejorar o mantener su cumplimiento. Sin embargo, algunas tácticas pueden entrar en conflicto con otras o tener efectos secundarios no deseados en diferentes atributos de calidad.
 			
-			Con este conflicto entramos en \textit{trade-off}, que se refiere a la necesidad de tomar decisiones que afectan a unos atributos en beneficio de otros.
+			Este conflicto da lugar a un \textit{trade-off}, que se refiere a la necesidad de tomar decisiones que afectan a unos atributos en beneficio de otros.
 
 		
 		\subsection{Availability \small{(Disponibilidad)}}
@@ -60,11 +63,11 @@
 			Los tipos de fallas que nos podemos encontrar son: 
 		
 			\begin{enumerate}
-				\item \textbf{Omission}: El sistema no responde a un pedido
+				\item \textbf{Omission}: El sistema no responde a un pedido.
 				
 				\item \textbf{Crash}: El sistema sufre omisiones repetitivas.
 				
-				\item \textbf{Timming}: El sistema responde, pero fuera de tiempo.
+				\item \textbf{Timing}: El sistema responde, pero fuera de tiempo.
 				
 				\item  \textbf{Response Failure}: El sistema responde, pero con un valor incorrecto.
 				
@@ -73,7 +76,7 @@
 		\subsubsection{Regla de los cinco 9's}\label{sec:regla_nueves}
 		Es una métrica que se utiliza para medir la confiabilidad y disponibilidad de un sistema o servicio. Se expresa como un porcentaje y significa que el sistema está disponible el 99.999\% del tiempo.
 		
-		Para calcular la disponibilidad en términos de "nueves", se considera el porcentaje de tiempo en el que el sistema está en funcionamiento en un año. Aquí está el desglose:
+		Para calcular la disponibilidad en términos de ``nueves'', se considera el porcentaje de tiempo en el que el sistema está en funcionamiento en un año. Aquí está el desglose:
 		\begin{enumerate}
 			\item \textbf{Disponibilidad de 99\%}: El sistema está inactivo aproximadamente 3.65 días al año.
 			
@@ -87,7 +90,7 @@
 		
 		
 		\subsubsection{Tácticas PDR}\label{sec:tacticas_disponibilidad}
-			Algunas técnicas PDR \footnote{El nombre PDR no es oficial, hice la abrevicación por comodidad. Es más, PDR es un nombre de una técnica para autos (Paintless Dent Repair)... Mira vos che. } (de prevención, detección y recuperación), en caso de que el atributo falle. que se pueden utilizar son: 
+			Algunas tácticas PDR\footnote{El nombre PDR no es oficial, hice la abreviación por comodidad. Es más, PDR es el nombre de una técnica para autos (Paintless Dent Repair)... Mirá vos, che.} (de prevención, detección y recuperación) que se pueden utilizar en caso de que el atributo falle son:
 			
 			\begin{itemize}		
 				\item \textbf{Prevención}
@@ -98,18 +101,18 @@
 				\end{enumerate}
 				\item \textbf{Detección}
 				\begin{enumerate}
-					\item \textbf{Envio de señales y monitoreo}: La idea es implementar mecanismos de detección que impliquen el envio de señales o mensajes periódicos entre componentes para verificar su estado y asegurar que sigan funcionando correctamente. 
+					\item \textbf{Envío de señales y monitoreo}: La idea es implementar mecanismos de detección que impliquen el envío de señales o mensajes periódicos entre componentes para verificar su estado y asegurar que sigan funcionando correctamente. 
 				
-					Un envio de señales puede ser el famoso \textit{Ping} y un sistema de monitoreo puede ser \textit{Datadog}.
+					Un envío de señales puede ser el famoso \textit{Ping} y un sistema de monitoreo puede ser \textit{Datadog}.
 					
-					\item \textbf{Votación}: Utilizado en sistemas con redundancia, la votación consiste en monitorear diferentes componentes y comparar sus resultados para detectar errores. Las coincidencias en la mayoría de los componentes se consideran válidas y las no coincidencias se ignoran, lo que permite detectar y recuperar las fallas del sistema.
+					\item \textbf{Votación}: Utilizado en sistemas con redundancia, la votación consiste en monitorear diferentes componentes y comparar sus resultados para detectar errores. Las coincidencias en la mayoría de los componentes se consideran válidas y las no coincidencias se ignoran, lo que permite detectar las fallas del sistema y recuperarse de ellas.
 				\end{enumerate}
 				
 				\item \textbf{Recuperación}
 				\begin{enumerate}
-					\item \textbf{Redundancia activa}: Esta táctica implica implementar componentes o servicios duplicados que se ejecutan simultáneamente, donde uno puede controlar y reanudar las operaciones en caso de que falle el componente principal. Esto permite una recuperación rápida y mejora la disponibilidad del sistema.
+					\item \textbf{Redundancia activa}: Esta táctica implica implementar componentes o servicios duplicados que se ejecutan simultáneamente, de modo que uno puede tomar el control y continuar las operaciones en caso de que falle el componente principal. Esto permite una recuperación rápida y mejora la disponibilidad del sistema.
 					
-					\item \textbf{Redundancia pasiva}: Similar a la redundancia activa, con la diferencia de que requiere una intervención manual para activar el componente redundante.
+					\item \textbf{Redundancia pasiva}: Similar a la redundancia activa, con la diferencia de que solo el componente principal procesa las entradas y los redundantes reciben actualizaciones periódicas de estado. Ante una falla, uno de ellos toma su lugar, pero la recuperación es más lenta que con redundancia activa.
 					
 					\item \textbf{Repuesto}: Esta táctica consiste en tener componentes de repuesto disponibles y listos para reemplazar rápidamente aquellos que fallen.
 					
@@ -137,29 +140,29 @@
 		 
 		 El rendimiento de un sistema se ve afectado por las interacciones entre sus elementos. Esto incluye la velocidad y la eficiencia en el uso de la red y la percepción del rendimiento por parte del usuario. La arquitectura del sistema juega un papel importante en la determinación de esta interacción.
 		 
-		 La elección de una arquitectura adecuada es muy importante, ya que el rendimiento suele estar limitado por varios factores: los requisitos del sistema, en relación con la sobrecarga de procesamiento subyacente entre diferentes componentes; tipo de interacción seleccionado, que puede requerir múltiples interacciones para lograr resultados; arquitectura e implementación de cada componente, lo que puede afectar la velocidad a la que se generan o consumen los datos.
+		 La elección de una arquitectura adecuada es muy importante, ya que el rendimiento suele estar limitado por varios factores: los requisitos del sistema, en relación con la sobrecarga de procesamiento subyacente entre diferentes componentes; el tipo de interacción seleccionado, que puede requerir múltiples interacciones para lograr resultados; y la arquitectura e implementación de cada componente, lo que puede afectar la velocidad a la que se generan o consumen los datos.
 		 
 		 Una pregunta que nos podemos hacer es ¿cuándo atacar los problemas de performance? Bueno, es conveniente abordar los problemas de rendimiento en dos momentos clave:
 		 
 		 \begin{enumerate}
-		 	\item \textbf{Durante el tiempo de ejecución}: En el caso de una aplicación en ejecución, puede resolver un problema de rendimiento proporcionando herramientas para que su código realice la acción correcta. Esto implica identificar áreas críticas donde el rendimiento puede verse afectado y recopilar datos sobre tiempos de respuesta, consumo de recursos y otras métricas relevantes. Con estas métricas en la mano, es posible optimizar el código y los algoritmos para mejorar la eficiencia y la velocidad de la aplicación.
+		 	\item \textbf{Durante el tiempo de ejecución}: En el caso de una aplicación en ejecución, se puede resolver un problema de rendimiento instrumentando el código para medir su comportamiento. Esto implica identificar áreas críticas donde el rendimiento puede verse afectado y recopilar datos sobre tiempos de respuesta, consumo de recursos y otras métricas relevantes. Con estas métricas en la mano, es posible optimizar el código y los algoritmos para mejorar la eficiencia y la velocidad de la aplicación.
 		 	
 		 	\item \textbf{Optimizar de forma temprana}: Un enfoque proactivo es abordar el rendimiento temprano en el desarrollo, considerando todas las decisiones arquitectónicas. Al tomar decisiones de diseño, es importante considerar cómo estas opciones afectarán el rendimiento general del sistema. Algunas decisiones de arquitectura pueden ser difíciles de revertir o mejorar con la optimización tardía, por lo que es mejor abordarlas temprano para evitar problemas de rendimiento graves en el futuro.				 	
 		 \end{enumerate}
 		 
-		 Es importante tener en cuenta que la optimización prematura no significa caer en la trampa de la optimización excesiva, lo que puede conducir a una arquitectura compleja que es difícil de mantener. En cambio, se trata de tomar decisiones informadas sobre el diseño del sistema que aseguren un buen rendimiento sin sacrificar la simplicidad y la claridad del código.
+		 Es importante tener en cuenta que optimizar temprano no significa caer en la trampa de la optimización excesiva, que puede conducir a una arquitectura compleja y difícil de mantener. En cambio, se trata de tomar decisiones informadas sobre el diseño del sistema que aseguren un buen rendimiento sin sacrificar la simplicidad y la claridad del código.
 		 
- 		\subsubsection{Network Perfomance}
+ 		\subsubsection{Network Performance}
  		El rendimiento de la red es una variable importante para el funcionamiento óptimo del sistema. Este concepto se refiere al rendimiento y eficiencia con que la red de comunicación de un sistema transmite información entre sus componentes. Algunos de los aspectos clave a tener en cuenta al evaluar el rendimiento de la red son:
  		
  		
  		\begin{enumerate}
- 			\item \textbf{Throughput}: Se define como la velocidad a la que se transfiere la información entre los diferentes componentes del sistema y, por lo general, se mide en bytes por segundo. Esta métrica incluye tanto los datos de la aplicación como los gastos generales asociados con la comunicación, que pueden surgir tanto de la configuración inicial como de la interacción de los componentes.
+ 			\item \textbf{Throughput}: Se define como la velocidad a la que se transfiere la información entre los diferentes componentes del sistema y, por lo general, se mide en bytes por segundo. Esta métrica incluye tanto los datos de la aplicación como el overhead asociado a la comunicación, que pueden surgir tanto de la configuración inicial como de la interacción de los componentes.
  			
- 			\item \textbf{Capacity}: Se refiere a la carga máxima que puede soportar, es decir, el rendimiento máximo que el sistema puede manejar de manera efectiva. Para medir la capacidad, las personas suelen utilizar el concepto de transacciones por segundo (tx/s, tps). Estas mediciones generalmente se realizan a través de pruebas de carga que utilizan transacciones representativas, como las más frecuentes o típicas, para evaluar si el sistema cumple con los requisitos establecidos.	
+ 			\item \textbf{Capacity}: Se refiere a la carga máxima que puede soportar el sistema, es decir, el rendimiento máximo que el sistema puede manejar de manera efectiva. Para medir la capacidad se suele utilizar el concepto de transacciones por segundo (tx/s, tps). Estas mediciones generalmente se realizan a través de pruebas de carga que utilizan transacciones representativas, como las más frecuentes o típicas, para evaluar si el sistema cumple con los requisitos establecidos.	
  			
  			 			
- 			\item \textbf{Bandwidth}\label{sec:bandwidth}: Representa el rendimiento máximo disponible en un canal de comunicación en particular. Esta es una medida importante para comprender la capacidad de transmisión de la red. Además, "ancho de banda utilizable" se refiere a la porción de ancho de banda disponible para la aplicación en cuestión que es relevante para determinar el rendimiento de la red en el contexto específico de la aplicación.
+ 			\item \textbf{Bandwidth}\label{sec:bandwidth}: Representa el rendimiento máximo disponible en un canal de comunicación en particular. Esta es una medida importante para comprender la capacidad de transmisión de la red. Además, ``ancho de banda utilizable'' se refiere a la porción de ancho de banda disponible para la aplicación en cuestión que es relevante para determinar el rendimiento de la red en el contexto específico de la aplicación.
  			
  						
  			\item \textbf{Estilos de Interacción}: El estilo de la arquitectura juega un papel importante en la forma en que se comunican los componentes y, por lo tanto, afecta directamente el rendimiento de la red. Los estilos más efectivos buscan minimizar el acceso a la red, llegando incluso a evitar su uso en circunstancias apropiadas. Esto se logra mediante la reducción de la frecuencia de las interacciones y la reutilización de interacciones anteriores, lo que optimiza el rendimiento de la red.
@@ -167,48 +170,48 @@
  					 	
  		\end{enumerate}
  		
- 		En resumidas palabras, el rendimiento de la red es fundamental para garantizar un funcionamiento eficiente del sistema y la capacidad de transferir información de manera eficiente entre sus componentes. Evaluar y optimizar el rendimiento, la capacidad, el ancho de banda y los patrones de interacción son pasos críticos para lograr un rendimiento óptimo de la red en el contexto de sistemas y aplicaciones complejos.
+ 		En resumen, el rendimiento de la red es fundamental para garantizar el funcionamiento eficiente del sistema y la transferencia de información entre sus componentes. Evaluar y optimizar el rendimiento, la capacidad, el ancho de banda y los patrones de interacción son pasos críticos para lograr un rendimiento óptimo de la red en el contexto de sistemas y aplicaciones complejos.
  		
  		\subsubsection{User-Perceived Performance}
- 		El nombre es bastante auto-explicativo, es una serie de métricas que evalúan el rendimiento de un sistema desde la perspectiva del usuario, teniendo en cuenta cómo perciben y experimentan el rendimiento del sistema en términos de tiempo de respuesta y eficiencia.
+ 		El nombre es bastante autoexplicativo: es una serie de métricas que evalúan el rendimiento de un sistema desde la perspectiva del usuario, teniendo en cuenta cómo los usuarios perciben y experimentan el rendimiento del sistema en términos de tiempo de respuesta y eficiencia.
  		Hay 2 tipos de métricas:
  		
  		
  		\begin{enumerate}
  			\item \textbf{Completion Time (Response Time)}: Esta métrica representa el tiempo requerido por el sistema para completar una solicitud específica (request) desde la perspectiva del usuario. Dado que estos tiempos pueden ser pequeños, variables y dependientes de diferentes parámetros, su medición desde el exterior del sistema puede resultar desafiante.
  			
- 			\item \textbf{Latency}: Se refiere al tiempo mínimo que el sistema necesita para ejecutar cualquier solicitud, incluso si esta implica no realizar ninguna acción. Según la descripción de Fowler, es el tiempo que transcurre desde el estímulo inicial hasta la primera indicación de respuesta. Por otro lado, Fielding la define como el tiempo que pasa entre el estímulo inicial y la primera indicación de respuesta.
+ 			\item \textbf{Latency}: Se refiere al tiempo mínimo que el sistema necesita para ejecutar cualquier solicitud, incluso si esta implica no realizar ninguna acción. Esta es la definición de Fowler. Por otro lado, Fielding la define como el tiempo que transcurre entre el estímulo inicial y la primera indicación de respuesta.
  			
  		\end{enumerate}
  		
- 		Además, dentro de las mediciones de User-Perceived Performance, se encuentra el concepto de Responsiveness, que denota el tiempo que un sistema requiere para reconocer o "aceptar" una solicitud del usuario. Algunos ejemplos ilustran la importancia de esta métrica, como el caso de una progress bar que mejora la responsividad, pero no necesariamente afecta el completion time. Asimismo, comparando dos web browsers, uno que muestra una imagen grande a medida que la va recibiendo (mejorando la percepción de respuesta) y otro que no lo hace, se mantiene la misma Network Performance, pero la experiencia de usuario es mejor con una mayor User-Perceived Performance.
+ 		Además, dentro de las mediciones de User-Perceived Performance, se encuentra el concepto de Responsiveness, que denota el tiempo que un sistema requiere para reconocer o ``aceptar'' una solicitud del usuario. Algunos ejemplos ilustran la importancia de esta métrica, como el caso de una progress bar que mejora la responsividad, pero no necesariamente afecta el completion time. Asimismo, comparando dos web browsers, uno que muestra una imagen grande a medida que la va recibiendo (mejorando la percepción de respuesta) y otro que no lo hace, se mantiene la misma Network Performance, pero la experiencia de usuario es mejor con una mayor User-Perceived Performance.
  		
- 		Es relevante señalar que optimizar la responsividad suele tener un impacto negativo en el completion time (y viceversa). Por ejemplo, al aumentar la tasa de compresión de la comunicación, se mejora la eficiencia conforme aumenta la cantidad de datos. Sin embargo, acumular datos antes de comprimirlos puede ayudar al completion time, pero a expensas de reducir la responsividad.
+ 		Es relevante señalar que optimizar la responsividad suele tener un impacto negativo en el completion time (y viceversa). Por ejemplo, los algoritmos de compresión son más eficientes cuantos más datos procesan: acumular datos antes de comprimirlos puede mejorar el completion time, pero a expensas de reducir la responsividad.
  		
  		En muchas situaciones, es importante considerar cuidadosamente qué aspecto conviene priorizar, dependiendo del contexto y los usuarios involucrados. Por ejemplo, al optimizar el funcionamiento de un web-server, es necesario evaluar si del otro lado se encuentra un web browser (que prioriza una alta responsividad) o un web spider\footnote{Es un programa automatizado que recorre de manera sistemática y metódica la World Wide Web (léase Internet) para indexar información y recopilar datos de diferentes páginas web.} (que valora más el completion time). La comprensión de estas métricas y su impacto en la percepción del usuario es esencial para diseñar y mejorar sistemas que ofrezcan una experiencia óptima al usuario.
 
  		
 		\subsubsection{Efficiency}
 		
-		Es una medida importante que se refiere a la capacidad que tiene un sistema para ofrecer un rendimiento óptimo en relación con los recursos consumidos. Específicamente, la eficiencia se relaciona con la relación entre la performance y los recursos involucrados en cumplir con un pedido o en realizar una acción.
+		Es una medida importante que se refiere a la capacidad que tiene un sistema para ofrecer un rendimiento óptimo en relación con los recursos consumidos. Específicamente, la eficiencia se define como la relación entre la performance y los recursos involucrados en cumplir con un pedido o en realizar una acción.
 		
 		Es fundamental considerar que cada solicitud o actividad que el sistema realiza implica el uso de recursos, como el tiempo de ejecución, la memoria, la capacidad de almacenamiento, entre otros. En situaciones reales, es frecuente que el sistema esté manejando múltiples solicitudes al mismo tiempo, lo que implica el uso simultáneo y compartido de recursos.
 		
-		Okey genial pero ¿como podemos \textbf{evaluar} la eficiencia? Fácil, con una prueba de \textbf{Load Test} o prueba de carga. Este tipo de pruebas simulan situaciones realistas de uso que nos permiten evaluar la eficiencia y la performance en diversas situaciones	en las cuales se aumentan la carga.
+		Okey, genial, pero ¿cómo podemos \textbf{evaluar} la eficiencia? Fácil, con una prueba de \textbf{Load Test} o prueba de carga. Este tipo de pruebas simulan situaciones realistas de uso que nos permiten evaluar la eficiencia y la performance en diversas situaciones en las que se aumenta la carga.
 		
-		El ultimo concepto importante sobre eficiencia es el \textit{Load Sensitivity} (\small{sensibilidad de carga, para los amigos}), este concepto representa la variación del tiempo de respuesta en función del nivel de carga. Cuando la performance empeora a medida que aumenta la carga, se evidencia una sensibilidad a la carga, lo cual indica que el sistema puede experimentar una disminución del rendimiento bajo cargas más altas.
+		El último concepto importante sobre eficiencia es la \textit{Load Sensitivity} ({\small sensibilidad de carga, para los amigos}), que representa la variación del tiempo de respuesta en función del nivel de carga. Cuando la performance empeora a medida que aumenta la carga, se evidencia una sensibilidad a la carga, lo cual indica que el sistema puede experimentar una disminución del rendimiento bajo cargas más altas.
 		
 		
 		
 		\subsubsection{Tácticas}
-		Para la performance, las tácticas se dividen en dos categorías principales: \textbf{Control Resource Demand} y \textbf{Manage Resources}. Vamos a ver algunos ejemplos de cada uno:  
+		Para la performance, las tácticas se dividen en dos categorías principales: \textbf{Control Resource Demand} y \textbf{Manage Resources}. Vamos a ver algunos ejemplos de cada una:
 		
 		\begin{itemize}		
 			\item \textbf{Control Resource Demand}
 			\begin{enumerate}
 				\item \textbf{Cache}: Almacenar temporalmente resultados de operaciones costosas para evitar recálculos innecesarios. Esto reduce la carga de recursos como CPU, almacenamiento y red.
 				
-				\item \textbf{Lazy Loading}: Cargar datos o recursos solo cuando se necesitan, en lugar de cargarlos todos al inicio. Esto disminuye la demanda inicial de recursos y optimiza el uso de memoria. Ejemplo: La carga de imágenes en una pagina. No se cargan todas de una, sino que las cargas cuando el usuario las tiene que ver.
+				\item \textbf{Lazy Loading}: Cargar datos o recursos solo cuando se necesitan, en lugar de cargarlos todos al inicio. Esto disminuye la demanda inicial de recursos y optimiza el uso de memoria. Ejemplo: la carga de imágenes en una página. No se cargan todas de una, sino que se cargan cuando el usuario las tiene que ver.
 				
 				\item \textbf{Prefetching}: Anticipar y cargar datos que probablemente serán requeridos en un futuro cercano, reduciendo así la latencia y mejorando la experiencia del usuario.
 				
@@ -224,7 +227,7 @@
 				
 				\item \textbf{Asynchronous Operations}: Utilizar operaciones asincrónicas para liberar recursos mientras se espera la finalización de ciertas tareas, permitiendo al sistema manejar más solicitudes concurrentes.
 				
-				\item \textbf{Schedule Resources}: Es el acceso a recursos a traves de politicas como FIFO, prioridad fija, prioridad dinámica.
+				\item \textbf{Schedule Resources}: Gestionar el acceso a los recursos a través de políticas como FIFO, prioridad fija o prioridad dinámica.
 				
 				
 			\end{enumerate}	
@@ -234,17 +237,17 @@
  		
 	
 		\subsection{Scalability \small{(Escalabilidad)} }
-		Se refiere a su capacidad para soportar una gran cantidad de componentes o las interacciones entre ellos [Fielding]. Es la capacidad del sistema para adaptarse al aumento de usuarios, transacciones y niveles de actividad, entre otros factores.
+		Se refiere a la capacidad de una arquitectura para soportar una gran cantidad de componentes o las interacciones entre ellos [Fielding]. Es la capacidad del sistema para adaptarse al aumento de usuarios, transacciones y niveles de actividad, entre otros factores.
 		
 		La efectividad de agregar recursos al sistema es crucial para la escalabilidad. Esta efectividad se mide en términos de una mejora mensurable en una característica de calidad sin invertir recursos innecesarios o interrumpir el funcionamiento del sistema.
 		
 		Hay dos métodos principales para lograr la escalabilidad:
 		
 		\begin{enumerate}	
-			\item \textbf{Escalabilidad vertical (scaling up)}: Es el proceso de agregar más recursos a las unidades físicas, lo que se conoce como "crecer en hardware". Por ejemplo, aumentar la memoria de un servidor. La mayoría de las veces, esta forma de escalabilidad requiere poco trabajo; sin embargo, hay límites en cuanto a la cantidad de recursos adicionales que se pueden agregar a una sola unidad.
+			\item \textbf{Escalabilidad vertical (scaling up)}: Es el proceso de agregar más recursos a las unidades físicas, lo que se conoce como ``crecer en hardware''. Por ejemplo, aumentar la memoria de un servidor. La mayoría de las veces, esta forma de escalabilidad requiere poco trabajo; sin embargo, hay límites en cuanto a la cantidad de recursos adicionales que se pueden agregar a una sola unidad.
 			
 			
-			\item \textbf{Escalabilidad horizontal (scaling out)}: implica agregar más recursos a las unidades lógicas, como tener múltiples servidores colaborando como un todo. El agregar más servidores a un clúster es un ejemplo de esto. Debido a la coordinación necesaria entre los servidores, esta forma de escalabilidad puede ser más potente, pero también puede ser más difícil de implementar.
+			\item \textbf{Escalabilidad horizontal (scaling out)}: Implica agregar más recursos a las unidades lógicas, como tener múltiples servidores colaborando como un todo. Agregar más servidores a un clúster es un ejemplo de esto. Debido a la coordinación necesaria entre los servidores, esta forma de escalabilidad puede ser más potente, pero también puede ser más difícil de implementar.
 					
 		\end{enumerate}
 		La elasticidad es un concepto relacionado que se refiere a la capacidad del sistema para aumentar o disminuir la cantidad de recursos en respuesta a los cambios en la demanda. Un ejemplo de este tipo de elasticidad es la escalabilidad horizontal en la nube, donde el sistema puede ajustar dinámicamente sus recursos para adaptarse a las fluctuaciones de carga.
@@ -252,7 +255,7 @@
 	\subsubsection{Tácticas}
 		
 		\begin{itemize}		
-				\item \textbf{Stateless}\label{sec:escalabilidad_tacticas}: implica diseñar los componentes del sistema de tal manera que no tengan información sobre el estado de las interacciones anteriores con el cliente. El tratamiento de cada solicitud del cliente se lleva a cabo de manera independiente, sin depender de ninguna información previamente almacenada. Esto facilita la escalabilidad horizontal porque se pueden agregar más instancias del componente sin preocuparse por el estado compartido.
+				\item \textbf{Stateless}\label{sec:escalabilidad_tacticas}: Implica diseñar los componentes del sistema de tal manera que no tengan información sobre el estado de las interacciones anteriores con el cliente. El tratamiento de cada solicitud del cliente se lleva a cabo de manera independiente, sin depender de ninguna información previamente almacenada. Esto facilita la escalabilidad horizontal porque se pueden agregar más instancias del componente sin preocuparse por el estado compartido.
 				
 				\item \textbf{Horizontal Scale}: Es una estrategia para aumentar la capacidad del sistema agregando más instancias o nodos en paralelo. Para distribuir la carga, se agregan más componentes idénticos en lugar de aumentar los recursos de un solo componente. Es una buena manera de hacer frente al aumento de la demanda sin comprometer el rendimiento.
 				
@@ -261,7 +264,7 @@
 				
 				\item \textbf{Async Design}: Permite que las tareas se realicen de manera no secuencial, evitando bloqueos y esperas innecesarias. Los patrones asíncronos permiten al sistema procesar solicitudes adicionales mientras se realizan otras tareas, lo que mejora la utilización de recursos y la capacidad de respuesta.
 				
-				\item \textbf{Sharding (Fragmentación o particionado)}: Consiste en dividir una base de datos o conjunto de datos grande en "fragmentos". Cada shard maneja un subconjunto de datos. Esta estrategia permite distribuir la carga entre varios servidores o bases de datos, lo que mejora la capacidad de manejar grandes cantidades de datos y mejora la eficiencia del acceso a la información.
+				\item \textbf{Sharding (Fragmentación o particionado)}: Consiste en dividir una base de datos o conjunto de datos grande en ``fragmentos''. Cada shard maneja un subconjunto de datos. Esta estrategia permite distribuir la carga entre varios servidores o bases de datos, lo que mejora la capacidad de manejar grandes cantidades de datos y mejora la eficiencia del acceso a la información.
 			
 		\end{itemize}
 			
@@ -270,7 +273,7 @@
 		 
 		La modificabilidad tiene una serie de características específicas que describen cómo el sistema puede modificarse o ser extendido para adaptarse a nuevos requisitos o necesidades sin afectar su funcionamiento.
 		
-		 Estas caracteristicas son: 
+		Estas características son:
 		\begin{itemize}		
 			\item \textbf{Extensibility (extensibilidad)}: Agregar funcionalidad al sistema (estática o
 			dinámicamente).
@@ -288,16 +291,16 @@
 			
 		\end{itemize}
 		
-		Ajá muy lindo pero ¿que puede llegar a afectar la modificabilidad? Hay algunos parámetros que lo hacen y son los siguientes: 
+		Ajá, muy lindo, pero ¿qué puede llegar a afectar la modificabilidad? Hay algunos parámetros que la afectan y son los siguientes:
 		\begin{itemize}		
-			\item \textbf{Tamaño del modulo}: Un módulo grande y complejo tiende a ser menos modificable que uno más pequeño y enfocado en una sola responsabilidad.
+			\item \textbf{Tamaño del módulo}: Un módulo grande y complejo tiende a ser menos modificable que uno más pequeño y enfocado en una sola responsabilidad.
 			
 			\item \textbf{Cohesión}: Un módulo con baja cohesión puede tener funcionalidades que no están estrechamente relacionadas. Si se requiere un cambio en una de estas funcionalidades, es probable que se deban realizar modificaciones en otras partes del módulo que no están directamente afectadas por el cambio. Esto complica todo.
 			
-			\item \textbf{Acoplamiento}: Las dependencias entre los módulos son fuertes cuando tienen un alto acoplamiento. Un cambio en un módulo puede afectar a otros módulos que dependen de él o que él depende. Esto puede conducir a una cadena de cambios en cascada en la que varios módulos deben ajustarse para adaptarse al cambio inicial.
+			\item \textbf{Acoplamiento}: Las dependencias entre los módulos son fuertes cuando tienen un alto acoplamiento. Un cambio en un módulo puede afectar a otros módulos que dependen de él o de los que él depende. Esto puede conducir a una cadena de cambios en cascada en la que varios módulos deben ajustarse para adaptarse al cambio inicial.
 			
 			
-			\item \textbf{Binding time}: Una inflexibilidad en el futuro puede ser el resultado de tomar decisiones de diseño en etapas tempranas del desarrollo del sistema. Es posible que no se hayan tenido en cuenta todos los requisitos futuros o cambios en el entorno si las decisiones se toman de manera prematura.
+			\item \textbf{Binding time}: Una inflexibilidad en el futuro puede ser el resultado de tomar decisiones de diseño en etapas tempranas del desarrollo del sistema. Es posible que no se hayan tenido en cuenta todos los requisitos futuros o cambios en el entorno si las decisiones se toman de manera prematura.
 			
 		\end{itemize}
 		\subsubsection{Tácticas}
@@ -326,7 +329,7 @@
 					
 				\item \textbf{Restrict dependencies (layers, wrappers)}: Al establecer capas o envoltorios que limiten las dependencias entre módulos, se disminuye la propagación de cambios y se mejora la independencia entre ellos.
 					
-				\item \textbf{Refactor (factorizar responsabilidades comunes))}: La identificación de funcionalidades comunes y la factorización de estas en módulos independientes fomenta la reutilización y evita la duplicación de código, lo que facilita realizar cambios sin afectar varias partes del sistema.
+				\item \textbf{Refactor (factorizar responsabilidades comunes)}: La identificación de funcionalidades comunes y la factorización de estas en módulos independientes fomenta la reutilización y evita la duplicación de código, lo que facilita realizar cambios sin afectar varias partes del sistema.
 					
 				\item \textbf{Abstract common services}: Al proporcionar servicios comunes como abstracciones, se mejora la adaptabilidad del sistema al modificar la implementación interna de los servicios sin afectar los módulos que los utilizan.
 				
@@ -337,7 +340,7 @@
 		\end{itemize}
 		
 		\subsection{Visibility \small{(Visibilidad)} }\label{sec:visibilidad}
-		Se refiere a la capacidad de un sistema de software para proporcionar información clara, relevante y comprensible sobre su funcionamiento interno y comportamiento externo. Por lo tanto, la visibilidad se refiere a la capacidad de observar y comprender lo que está sucediendo dentro del sistema y cómo interactúa con su entorno.
+		Se refiere a la capacidad de un sistema de software para proporcionar información clara, relevante y comprensible sobre su funcionamiento interno y comportamiento externo. Es decir, la visibilidad se refiere a la capacidad de observar y comprender lo que está sucediendo dentro del sistema y cómo interactúa con su entorno.
 		
 		Un sistema que tiene una alta visibilidad puede ofrecer herramientas y mecanismos, como por ejemplo: 
 		
@@ -350,7 +353,7 @@
 			
 			\item \textbf{Proporcionar métricas y estadísticas útiles}
 			
-			\item \textbf{interfaces y paneles de control para visualizar el estado del sistema y su funcionamiento en tiempo real}
+			\item \textbf{Interfaces y paneles de control para visualizar el estado del sistema y su funcionamiento en tiempo real}
 			
 		\end{enumerate}	
 		
@@ -358,7 +361,7 @@
 		\subsection{Security \small{(Seguridad)}}
 		Se refiere a la capacidad de un sistema para proteger sus recursos y datos contra accesos no autorizados, manipulación maliciosa y garantizar la confidencialidad, integridad, disponibilidad y autenticidad de la información y los servicios que brinda.
 		
-		Esta característica tiene varios aspectos importantes. Las dimensiones o componentes fundamentales que componen el atributo se denominan aspectos. Y ¿cuales son estos aspectos claves? Son los siguientes: 
+		Esta característica tiene varios aspectos importantes (las dimensiones o componentes fundamentales que componen el atributo). ¿Y cuáles son estos aspectos clave? Son los siguientes:
 			\begin{enumerate}
 			\item \textbf{Confidentiality}: Proteger datos/servicios de accesos
 			no autorizados
@@ -371,11 +374,11 @@
 			
 			\item \textbf{Authorization}: Concesión de privilegios para ejecutar tareas.
 			
-			\item \textbf{Non-repudiation}: Remitente y destinatario no	deberían poder negar el intercambio de mensajes			
+			\item \textbf{Non-repudiation}: Remitente y destinatario no deberían poder negar el intercambio de mensajes.
 			
 		\end{enumerate}	
 		\subsubsection{Tácticas}
-		Para éste atributo, podemos organizar las tácticas en 4 categorías: detección de ataques, resistencia, reacción y recuperación.
+		Para este atributo, podemos organizar las tácticas en 4 categorías: detección de ataques, resistencia, reacción y recuperación.
 		\begin{itemize}		
 			\item \textbf{Detección de ataques}
 			\begin{enumerate}
@@ -385,12 +388,12 @@
 				
 				\item \textbf{Verify Message Integrity (integridad de mensajes)}: Se utilizan técnicas de verificación como checksums o hashes para asegurarse de que los mensajes no han sido alterados o modificados durante la transmisión o el procesamiento.
 				
-				\item \textbf{Detect Message Delay (MITM)}: Se enfoca en detectar posibles ataques de intermediarios maliciosos, también conocidos como "hombre en el medio", que pueden retrasar o manipular la entrega de mensajes entre dos partes.
+				\item \textbf{Detect Message Delay (MITM)}: Se enfoca en detectar posibles ataques de intermediarios maliciosos, también conocidos como ``hombre en el medio'', que pueden retrasar o manipular la entrega de mensajes entre dos partes.
 			\end{enumerate}
 			
 			\item \textbf{Resistencia}:
 			\begin{enumerate}
-				\item \textbf{Identify, Authenticate, Authorize actors (identificar, autenticar y autorizar actores)}: implica verificar y validar la identidad de los usuarios o componentes del sistema antes de concederles acceso o privilegios específicos.
+				\item \textbf{Identify, Authenticate, Authorize actors (identificar, autenticar y autorizar actores)}: Implica verificar y validar la identidad de los usuarios o componentes del sistema antes de concederles acceso o privilegios específicos.
 				
 				\item \textbf{Limit access (limitar acceso)}: Se refiere a limitar y controlar minuciosamente el acceso de los usuarios o componentes a los recursos y servicios que necesitan para sus funciones autorizadas.
 				
@@ -406,7 +409,7 @@
 				\item \textbf{Revoke access (revocar acceso)}: Implica revocar el acceso de los usuarios o componentes involucrados en caso de detectar actividades maliciosas o no autorizadas.
 				
 				
-				\item \textbf{Lock computer (bloquear equipo))}: Se puede bloquear un computadora o sistema en respuesta a intentos fallidos de autenticación o actividades sospechosas.
+				\item \textbf{Lock computer (bloquear equipo)}: Se puede bloquear una computadora o sistema en respuesta a intentos fallidos de autenticación o actividades sospechosas.
 				
 				
 				\item \textbf{Inform actors (informar actores)}: Significa informar a los usuarios o partes afectadas sobre actividades sospechosas o eventos de seguridad para que tomen medidas.
@@ -417,7 +420,7 @@
 			\begin{enumerate}
 				\item \textbf{Audit Trail (registro de auditoría)}: Se refiere al mantenimiento de un registro detallado de eventos y actividades del sistema. Esto facilita la identificación y el análisis de posibles brechas de seguridad y permite la reconstrucción de eventos después de un ataque.
 				
-				\item \textbf{Restore (restaurar)}: esta táctica está relacionada con las tácticas de disponibilidad y tiene como objetivo restaurar rápidamente los servicios y recursos afectados por un ataque para que el sistema vuelva a un estado funcional normal.
+				\item \textbf{Restore (restaurar)}: Esta táctica está relacionada con las tácticas de disponibilidad y tiene como objetivo restaurar rápidamente los servicios y recursos afectados por un ataque para que el sistema vuelva a un estado funcional normal.
 				
 				
 			\end{enumerate}	
@@ -428,7 +431,7 @@
 		\subsection{Testability \small{(Testeabilidad)}}
 		Se refiere a la facilidad con la que un sistema o aplicación puede ser probado para verificar su funcionamiento correcto y detectar errores o defectos potenciales. En otras palabras, se refiere a la facilidad con la que pueden descubrirse los bugs.
 		\subsubsection{Tácticas}
-		Las tácticas para éste atributo se pueden categorizar en dos enfoques: Control and Observe State, y Limit complexity. 
+		Las tácticas para este atributo se pueden categorizar en dos enfoques: Control and Observe State, y Limit complexity. 
 		
 		
 		\begin{itemize}		
@@ -437,16 +440,16 @@
 			
 			Algunas estrategias específicas son:
 			\begin{enumerate}
-				\item \textbf{Specialized Interfaces}: Crear interfaces especializadas, como métodos "Report()" o niveles de detalle en el registro de información (output/logging verbosity), que permitan a los testers obtener información relevante sobre el comportamiento del sistema durante las pruebas.
+				\item \textbf{Specialized Interfaces}: Crear interfaces especializadas, como métodos ``Report()'' o niveles de detalle en el registro de información (output/logging verbosity), que permitan a los testers obtener información relevante sobre el comportamiento del sistema durante las pruebas.
 
 				\item \textbf{Performance Instrumentation}: Incluye instrumentación de rendimiento que registra datos pertinentes, como tiempos de ejecución o recursos utilizados, para analizar el rendimiento del sistema bajo diferentes escenarios de prueba.
 				
 				
 				\item \textbf{Resource Monitoring}: Vigila los recursos del sistema, como el uso de memoria o CPU, para detectar problemas de rendimiento o agotamiento de recursos.
 				
-				\item \textbf{Record/Playback}:Capturar la entrada (input) de una interfaz del sistema y luego reproducirla durante las pruebas, lo que permite recrear escenarios específicos y verificar resultados consistentes.
+				\item \textbf{Record/Playback}: Capturar la entrada (input) de una interfaz del sistema y luego reproducirla durante las pruebas, lo que permite recrear escenarios específicos y verificar resultados consistentes.
 				
-				\item \textbf{Sandbox}: Aislar una instancia del sistema en un entorno de sandbox\footnote{Un entorno sandbox es un espacio controlado y aislado donde las aplicaciones o programas se ejecutan de forma separada del sistema principal. Este entorno protege y protege el sistema operativo y los recursos del sistema, lo que permite que las aplicaciones funcionen de manera segura sin dañar el funcionamiento del sistema principal.} para virtualizar recursos como el reloj del sistema, lo que facilita la simulación de condiciones particulares para pruebas.
+				\item \textbf{Sandbox}: Aislar una instancia del sistema en un entorno de sandbox\footnote{Un entorno sandbox es un espacio controlado y aislado donde las aplicaciones o programas se ejecutan de forma separada del sistema principal. Este entorno aísla y protege el sistema operativo y los recursos del sistema, lo que permite que las aplicaciones funcionen de manera segura sin dañar el funcionamiento del sistema principal.} para virtualizar recursos como el reloj del sistema, lo que facilita la simulación de condiciones particulares para pruebas.
 				
 								
 				\item \textbf{Assertions}: Se incluyen en el código para garantizar que ciertos estados o condiciones se cumplan durante las pruebas, detectando automáticamente estados fallidos.
@@ -471,7 +474,7 @@
 		Es la facilidad con la que el usuario puede realizar una tarea deseada, y el tipo de soporte a usuarios que el sistema provee.
 		
 		\subsubsection{Tácticas}
-		Las tácticas para éste atributo se pueden categorizar en dos enfoques: Support User Initiative, y Support System Initiative. 
+		Las tácticas para este atributo se pueden categorizar en dos enfoques: Support User Initiative, y Support System Initiative. 
 		
 		
 		\begin{itemize}		
@@ -482,7 +485,7 @@
 			\begin{enumerate}
 				\item \textbf{Cancel}: Ofrecer al usuario la capacidad de cancelar una acción o proceso en curso sin tener consecuencias negativas.
 				
-				\item \textbf{Undo}: Permitir al usuario cancelar una acción anterior y restaurar cambios no deseados.
+				\item \textbf{Undo}: Permitir al usuario deshacer una acción anterior y revertir cambios no deseados.
 				
 				
 				\item \textbf{Pause/Resume}: Dar la opción de pausar un proceso o una tarea y luego reanudarlo más tarde, lo que es particularmente útil para tareas largas o complejas.
@@ -494,11 +497,11 @@
 			\end{enumerate}
 			
 			\item \textbf{Support System Initiative}:
-			Al utilizar la información del contexto y del usuario, esta estrategia tiene como objetivo mejorar el rendimiento del sistema. 
+			Al utilizar la información del contexto y del usuario, esta estrategia tiene como objetivo que el sistema anticipe las necesidades del usuario y lo asista.
 			
 			Algunas estrategias específicas son:
 			\begin{enumerate}
-				\item \textbf{Task Model (Modelo de Tareas)}: Para anticipar las necesidades del usuario y brindarle una asistencia más efectiva, el sistema puede utilizar un modelo de las tareas que realiza el usuario. Un autocorrector basado en el texto del documento, por ejemplo, que detecta errores comunes y ofrece sugerencias para corregirlos al usuario.
+				\item \textbf{Task Model (Modelo de Tareas)}: Para anticipar las necesidades del usuario y brindarle una asistencia más efectiva, el sistema puede utilizar un modelo de las tareas que realiza el usuario. Un autocorrector basado en el texto del documento, por ejemplo, que detecta errores comunes y ofrece al usuario sugerencias para corregirlos.
 				
 				
 				\item \textbf{User Model (Modelo del Usuario)}: El sistema puede crear un perfil o modelo del usuario basado en el comportamiento, las preferencias o el conocimiento previo del usuario. Esto permite que la experiencia del usuario se adapte a sus necesidades particulares.
@@ -517,7 +520,7 @@
 		
 		
 		\subsubsection{Tácticas}
-		Las tácticas para éste atributo se pueden categorizar en dos enfoques: Locate, y Manage Interfaces. 
+		Las tácticas para este atributo se pueden categorizar en dos enfoques: Locate, y Manage Interfaces. 
 		
 		\begin{itemize}		
 			\item \textbf{Locate}:
@@ -551,7 +554,7 @@
 		Se refiere a la capacidad de un sistema, aplicación o dispositivo para ser administrado y controlado con facilidad por administradores, usuarios o herramientas automatizadas.
 		
 		\subsection{Reliability  \small{(Fiabilidad)}}
-		se refiere a la capacidad de un sistema, dispositivo o proceso para realizar una función o tarea durante un período de tiempo determinado de manera precisa, consistente y sin fallas.
+		Se refiere a la capacidad de un sistema, dispositivo o proceso para realizar una función o tarea durante un período de tiempo determinado de manera precisa, consistente y sin fallas.
 		
 		En otras palabras, un sistema fiable es aquel que puede mantener el rendimiento y la operación esperados incluso en circunstancias adversas o imprevistas.
 		
@@ -559,11 +562,11 @@
 		
 		\section{Estilos de arquitectura}
 		Un estilo arquitectónico es un conjunto coordinado de restricciones arquitectónicas que restringe las
-		funciones/características de los elementos arquitectónicos y las relaciones permitidas	entre esos elementos, dentro de cualquier arquitectura que se ajusta a ese estilo.
+		funciones/características de los elementos arquitectónicos y las relaciones permitidas entre esos elementos, dentro de cualquier arquitectura que se ajuste a ese estilo.
 		
 		Los estilos arquitectónicos son métodos que combinan estructuras de soluciones arquitectónicas especificando un conjunto de componentes y sus responsabilidades. Además, establecen reglas que regulan cómo se relacionan estos elementos entre sí. Estos estilos permiten evaluar una variedad de arquitecturas alternativas, identificando sus ventajas y desventajas en función de las distintas características de calidad requeridas.
 		
-		Los estilos arquitectónicos se pueden clasificar de la siguiente manera (ojo, no es una clasificacion completa, sino una muestra representantiva): 
+		Los estilos arquitectónicos se pueden clasificar de la siguiente manera (ojo, no es una clasificación completa, sino una muestra representativa): 
 		
 		\begin{itemize}	
 			\item {Data Flow Styles}
@@ -581,12 +584,12 @@
 		
 		\subsection{Replication Styles}
 		\subsubsection{Replicated Repository (RR)}
-		Son una arquitectura en la que varios procesos brindan el mismo servicio. Los servidores descentralizados trabajan juntos para dar a los clientes la impresión de que hay un solo servidor central en lugar de un servidor centralizado.
+		Es una arquitectura en la que varios procesos brindan el mismo servicio. Los servidores, descentralizados, trabajan juntos para dar a los clientes la impresión de que hay un único servidor central.
 		
-		Este enfoque se emplea en sistemas de archivos distribuidos,y sistemas de control de versiones, como CVS/SVN (local), donde múltiples servidores colaboran para garantizar el rendimiento y la disponibilidad.
+		Este enfoque se emplea en sistemas de archivos distribuidos y sistemas de control de versiones, como CVS/SVN (local), donde múltiples servidores colaboran para garantizar el rendimiento y la disponibilidad.
 		
  		\paragraph{Beneficios:}
-		¿Cuales son las ventajas de esto?
+		¿Cuáles son las ventajas de esto?
 		\begin{itemize}	
 			\item {\textbf{Escalabilidad}}: Permite manejar picos de carga, usuarios y transacciones más grandes sin comprometer el rendimiento del sistema.
 			\item {\textbf{Performance}}: Como los datos se pueden obtener de los servidores más cercanos al cliente, se reduce la latencia de las solicitudes normales. Además, permite trabajar en modo offline en situaciones en las que no se puede conectar al servidor central.
@@ -595,10 +598,10 @@
 			\item {\textbf{Simplicidad}}: La simplicidad en la manipulación de datos replicados a nivel local compensa la complejidad de la replicación, lo que facilita el uso del sistema para los clientes.
 		\end{itemize}
 		
-		Genial muy lindo, pero una preocupación importante en esta arquitectura es mantener la consistencia de los datos. Para evitar inconsistencias y conflictos, es crucial asegurarse de que los datos replicados siempre estén sincronizados y actualizados entre los servidores.
+		Genial, muy lindo, pero una preocupación importante en esta arquitectura es mantener la consistencia de los datos. Para evitar inconsistencias y conflictos, es crucial asegurarse de que los datos replicados siempre estén sincronizados y actualizados entre los servidores.
 		
 		\subsubsection{Cache (\$)}
-		 Es una técnica de arquitectura que implica la replicación del resultado de una solicitud en un sistema, permitiendo que este resultado sea utilizado en futuras solicitudes similares. Es una variante del concepto de "Repositorios replicados" (RR) y se usa principalmente en situaciones en las que el conjunto de datos posible es mayor de lo que el cliente puede manejar o cuando el acceso completo al repositorio es innecesario.
+		 Es una técnica de arquitectura que implica la replicación del resultado de una solicitud en un sistema, permitiendo que este resultado sea utilizado en futuras solicitudes similares. Es una variante del concepto de ``Repositorios replicados'' (RR) y se usa principalmente en situaciones en las que el conjunto de datos posible es mayor de lo que el cliente puede manejar o cuando el acceso completo al repositorio es innecesario.
  		\paragraph{Implementaciones}
 		 
  		\begin{itemize}	
@@ -608,18 +611,18 @@
 		 
 		 
 		 \paragraph{Beneficios:}		 
-			El Cache es ampliamente utilizada en aplicaciones web para mejorar el rendimiento y reducir la latencia. Algunos beneficios de su implementación son:
+			El cache es ampliamente utilizado en aplicaciones web para mejorar el rendimiento y reducir la latencia. Algunos beneficios de su implementación son:
 
 
 		 
 		 \begin{itemize}	
 		 	\item {\textbf{Performance}}: Aunque no ofrece mejoras tan significativas como la replicación de repositorios, aún así mejora el rendimiento del sistema al reducir el tiempo de respuesta de las solicitudes.
 		 	
-		 	\item {\textbf{Simplicidad}}: es más sencillo de implementar en comparación con la replicación de repositorios, lo que la convierte en una opción atractiva para sistemas con requerimientos de recursos más modestos.
+		 	\item {\textbf{Simplicidad}}: Es más sencillo de implementar en comparación con la replicación de repositorios, lo que lo convierte en una opción atractiva para sistemas con requerimientos de recursos más modestos.
 		 	
 		 \end{itemize}
 		 
-		 El cache requiere menos recursos de procesamiento y almacenamiento en comparación con la replicación de repositorios (RR), ya que solo replica datos relevantes y puede transmitir solo cuando sea necesario. Debido a la naturaleza selectiva de la caché, sin embargo, los beneficios en términos de rendimiento percibido pueden ser menores que los RR.
+		 El cache requiere menos recursos de procesamiento y almacenamiento en comparación con la replicación de repositorios (RR), ya que solo replica datos relevantes y puede transmitir solo cuando sea necesario. Debido a la naturaleza selectiva de la caché, sin embargo, los beneficios en términos de rendimiento percibido pueden ser menores que con RR.
 		 
 		 
 		
@@ -628,17 +631,17 @@
 		\subsection{Hierarchical Styles}
 		
 		\subsubsection{Client Server (CS)}
-		El "servidor-cliente" (servidor cliente, CS) es el estilo arquitectónico más común para aplicaciones basadas en red. El servidor y el cliente son los dos componentes principales de la arquitectura de este estilo.
+		El estilo ``cliente-servidor'' (Client-Server, CS) es el estilo arquitectónico más común para aplicaciones basadas en red. El servidor y el cliente son los dos componentes principales de la arquitectura de este estilo.
 		
-		El componente que ofrece servicios y responde a las peticiones de los clientes es el servidor. Es responsable de enviar o rechazar las solicitudes y responder a ellas.
+		El componente que ofrece servicios y responde a las peticiones de los clientes es el servidor. Es responsable de aceptar o rechazar las solicitudes y de responderlas.
 		
-		El componente llamado cliente solicita servicios al servidor a través de un conector. El cliente sabe del servidor, pero no sabe de todos los clientes. Un servidor puede manejar a muchos clientes.
+		El componente llamado cliente solicita servicios al servidor a través de un conector. El cliente conoce al servidor, pero no a los demás clientes. Un servidor puede manejar a muchos clientes.
 		
 		 Este estilo se destaca por la clara separación de responsabilidades entre el servidor y el cliente. El cliente se encarga de solicitar servicios y el servidor de proporcionarlos. Esta separación simplifica el diseño y facilita la evolución de ambos componentes de forma independiente.
 		
 		\paragraph{Beneficios}
 		\begin{itemize}	
-			\item {\textbf{Escalabilidad}}: Debido a que el servidor es el componente que generalmente requiere una mayor capacidad y recursos para atender a múltiples clientes, la arquitectura "Client-Server" permite un crecimiento más sencillo del sistema.
+			\item {\textbf{Escalabilidad}}: Debido a que el servidor es el componente que generalmente requiere una mayor capacidad y recursos para atender a múltiples clientes, la arquitectura ``Client-Server'' permite un crecimiento más sencillo del sistema.
 			
 			\item {\textbf{Simplicidad}}: La separación de funciones hace que el diseño general del sistema sea más sencillo, lo que facilita el desarrollo y mantenimiento del software.
 			
@@ -646,37 +649,37 @@
 			
 		\end{itemize}
 		
-		\subsubsection{Layered Server (LS)}
-		Es un estilo arquitectónico en el que las capas jerárquicas organizan el sistema. Cada capa proporciona servicios a la capa superior mientras que la capa inferior los utiliza. Este método oculta las capas internas a las capas superiores para reducir el acoplamiento entre las diferentes partes del sistema.
+		\subsubsection{Layered System (LS)}
+		Es un estilo arquitectónico en el que el sistema se organiza en capas jerárquicas. Cada capa proporciona servicios a la capa superior y utiliza los servicios de la capa inferior. Este método oculta las capas inferiores a las capas superiores para reducir el acoplamiento entre las diferentes partes del sistema.
  		\paragraph{Beneficios}
 		\begin{itemize}	
 			\item {\textbf{Evolucionabilidad}}: Permite evolucionar cada capa de manera independiente sin afectar a las demás.
 			
 			\item {\textbf{Extensibilidad}}: Es posible agregar nuevas capas a medida que se requieran nuevas funcionalidades o servicios en el sistema.
 			
-			\item {\textbf{Reusabilidad}}: Las capas pueden ser diseñadas de forma modular y reutilizarse en diferentes sistemas o contexto.
+			\item {\textbf{Reusabilidad}}: Las capas pueden ser diseñadas de forma modular y reutilizarse en diferentes sistemas o contextos.
 			
 			\item {\textbf{Portabilidad}}: Las capas se pueden portar y utilizar en diferentes sistemas o plataformas.
 		\end{itemize}
 		
-		Sin embargo presenta una desventaja en la \textbf{Performance}, porque la adición de capas puede introducir overhead y latencia en el sistema.
+		Sin embargo, presenta una desventaja en la \textbf{Performance}, porque la adición de capas puede introducir overhead y latencia en el sistema.
 	
 		
 		
 		
-		\subsubsection{Layered Client System (LCS)}
-		El enfoque arquitectónico "Cliente Servidores de capas" (LCS) combina el concepto de capas con el estilo "Cliente Servidores de capas" (CS) en sistemas basados en red. Para proporcionar una estructura más jerárquica y modular, en este caso, las arquitecturas CS se organizan en capas.
+		\subsubsection{Layered-Client-Server (LCS)}
+		El estilo ``Layered-Client-Server'' (LCS) combina el estilo en capas (LS) con el estilo ``Client-Server'' (CS) en sistemas basados en red. Para proporcionar una estructura más jerárquica y modular, en este caso las arquitecturas CS se organizan en capas.
 		
-		El "Reverse Proxy", también conocido como proxy inverso, es una capa de aplicación accesible desde varios clientes y es un componente crucial de las arquitecturas LCS. Las solicitudes de los clientes son recibidas por esta capa y luego enviadas a los componentes del servidor. Además, el "Reverse Proxy" tiene la capacidad de traducir o modificar las solicitudes antes de enviarlas a los servidores, lo que mejora la funcionalidad.
+		El ``Reverse Proxy'', también conocido como proxy inverso, es una capa de aplicación accesible desde varios clientes y es un componente crucial de las arquitecturas LCS. Las solicitudes de los clientes son recibidas por esta capa y luego enviadas a los componentes del servidor. Además, el ``Reverse Proxy'' tiene la capacidad de traducir o modificar las solicitudes antes de enviarlas a los servidores, lo que mejora la funcionalidad.
 		
-		En cuestión a los beneficios, se suman los beneficios entre CS y LS.
+		En cuanto a los beneficios, se suman los de CS y LS.
 		
 		\subsubsection{Load Balancer}\label{sec:load_balancer}
-		Es una parte importante de las arquitecturas de sistemas distribuidos que se encarga de recibir solicitudes (requests) de los clientes y distribuirlas entre un grupo de servidores, luego direccionando la respuesta del servidor seleccionado al cliente correspondiente. 
+		Es una parte importante de las arquitecturas de sistemas distribuidos que se encarga de recibir solicitudes (requests) de los clientes y distribuirlas entre un grupo de servidores, y luego dirigir la respuesta del servidor seleccionado al cliente correspondiente. 
 		
 		Su objetivo principal es mejorar el rendimiento y la disponibilidad del sistema asegurándose de que el tráfico de las solicitudes se distribuya de manera equitativa y se gestione de manera eficiente entre los servidores.
 		
-		La relación entre el load balancer y arquitectura stateless, es que al servidor al que se envía una solicitud específica no importa, ya que cada solicitud incluye todos los datos necesarios para su procesamiento de manera independiente. Esto facilita la distribución eficiente de la carga y contribuye a la escalabilidad y la estabilidad del sistema al eliminar la necesidad de preocuparse por la persistencia del estado en los servidores individuales.
+		La relación entre el load balancer y una arquitectura stateless es que no importa a qué servidor se envíe cada solicitud, ya que cada solicitud incluye todos los datos necesarios para su procesamiento de manera independiente. Esto facilita la distribución eficiente de la carga y contribuye a la escalabilidad y la estabilidad del sistema al eliminar la necesidad de preocuparse por la persistencia del estado en los servidores individuales.
 		
 		
 		
@@ -689,7 +692,7 @@
 			
 			\item {\textbf{Elasticidad}}: Según el caso, podría escalar acorde a la demanda.
 			
-			\item {\textbf{Disponibilidad}}: Las capas pueden ser diseñadas de forma modular y reutilizarse en diferentes sistemas o contexto.
+			\item {\textbf{Disponibilidad}}: Si un servidor falla, el load balancer deja de enviarle tráfico y redirige las solicitudes a los servidores restantes.
 			
 			\item {\textbf{Fiabilidad}}: El balanceador de carga mejora la confiabilidad del sistema al eliminar un solo punto de falla al distribuir el tráfico entre varios servidores.
 			
@@ -706,18 +709,18 @@
 				
 		\paragraph{Beneficios}
 		\begin{itemize}	
-			\item {\textbf{Seguridad}}: Actúa como una barrera de seguridad que oculta la identidad y ubicación de los servidores reales. Al hacerlo, protege los servidores de posibles ataques directos y reduce la exposición de vulnerabilidades. Esconde los servidores asi ecita explotar vulnerabilidades y puede implementar mecanismos de proteccion contra ataques DoS
+			\item {\textbf{Seguridad}}: Actúa como una barrera de seguridad que oculta la identidad y ubicación de los servidores reales. Al hacerlo, protege los servidores de posibles ataques directos y reduce la exposición de vulnerabilidades. Además, puede implementar mecanismos de protección contra ataques DoS.
 			
-			\item {\textbf{Escalabilidad}}: Permite una mayor flexibilidad en el manejo de recursos, ya que puede agregar o eliminar servidores reales de manera dinámica y transparente.
+			\item {\textbf{Escalabilidad}}: Permite una mayor flexibilidad en el manejo de recursos, ya que se pueden agregar o eliminar servidores reales de manera dinámica y transparente.
 			
 			\item {\textbf{Performance}}: Mejora el rendimiento del sistema al realizar técnicas de aceleración web, como el almacenamiento en caché, compresión y terminación SSL.	
 			
 		\end{itemize}
 		
 		\subsubsection{Client-Stateless-Server (CSS)}\label{sec:client-statless-server}
-		Es un método arquitectónico que proviene del estilo "Client-Server" (CS), pero tiene una limitación: no se puede almacenar el estado de la sesión en el componente servidor. En este caso, el propio cliente debe proporcionar toda la información necesaria para comprender las solicitudes del cliente, y el servidor no mantiene ningún tipo de contexto o estado de la sesión. El cliente tiene todo el control sobre el estado.
+		Es un método arquitectónico que proviene del estilo ``Client-Server'' (CS), pero agrega una restricción: no se puede almacenar el estado de la sesión en el componente servidor. En este caso, el propio cliente debe proporcionar toda la información necesaria para comprender cada solicitud, y el servidor no mantiene ningún tipo de contexto o estado de la sesión. El cliente tiene todo el control sobre el estado.
 		
-		¿Que es el estado? Cualquier información sobre la sesión del cliente que el servidor debe recordar y mantener entre varias solicitudes se conoce como estado.
+		¿Qué es el estado? Cualquier información sobre la sesión del cliente que el servidor debe recordar y mantener entre varias solicitudes se conoce como estado.
 		
 		
 		\paragraph{Beneficios}
@@ -736,12 +739,12 @@
 			
 		\end{itemize}
 		
-		\subsubsection{Client-Cache-Stateless-Server(C\$SS)}
-		Es un enfoque arquitectónico que combina características de "Client Stateless Server" (CSS) y Client Cache(\$). Esta arquitectura incorpora una capa de mediadores de caché adicional para mejorar el rendimiento y la eficiencia del sistema.
+		\subsubsection{Client-Cache-Stateless-Server (C\$SS)}
+		Es un enfoque arquitectónico que combina características de ``Client Stateless Server'' (CSS) y Cache (\$). Esta arquitectura incorpora una capa de mediadores de caché adicional para mejorar el rendimiento y la eficiencia del sistema.
 		
-		Los clientes interactúan con un servidor que no mantiene estado (CSS) en C\$SS, lo que significa que no almacena datos de sesión entre solicitudes. El servidor responde de manera independiente y sin dependencia de estados anteriores a cada solicitud del cliente, que contiene toda la información necesaria para ser comprendida y procesada.
+		En C\$SS, los clientes interactúan con un servidor que no mantiene estado (CSS), lo que significa que no almacena datos de sesión entre solicitudes. El servidor responde a cada solicitud del cliente de manera independiente y sin depender de estados anteriores; cada solicitud contiene toda la información necesaria para ser comprendida y procesada.
 		
-		Sin embargo, para mejorar el rendimiento y la eficiencia, se agrega la funcionalidad de caché (Client Cache, \$) en algún lugar de la arquitectura. Los mediadores\footnote{En un sistema distribuido, los mediadores de caché, también conocidos como "proxys de caché" o "servidores de caché", son componentes que actúan como intermediarios entre los clientes y los servidores.} de caché almacenan copias temporales de respuestas a solicitudes previas para que, si un cliente hace una solicitud idéntica o similar a una que ya ha sido atendida, el servidor pueda evitar repetir todo el procesamiento y simplemente devolver la respuesta desde la caché.
+		Sin embargo, para mejorar el rendimiento y la eficiencia, se agrega la funcionalidad de caché (Cache, \$) en algún lugar de la arquitectura. Los mediadores\footnote{En un sistema distribuido, los mediadores de caché, también conocidos como ``proxies de caché'' o ``servidores de caché'', son componentes que actúan como intermediarios entre los clientes y los servidores.} de caché almacenan copias temporales de respuestas a solicitudes previas para que, si un cliente hace una solicitud idéntica o similar a una que ya ha sido atendida, se pueda evitar repetir todo el procesamiento y simplemente devolver la respuesta desde la caché.
 		
 		\paragraph{Beneficios}
 		\begin{itemize}	
@@ -751,21 +754,21 @@
 		
 		
 		\subsubsection{Layered-Client-Cache-Stateless-Server (LC\$SS)}
-		Es un estilo arquitectónico que combina características de los estilos "Layered Client Server" y "Client Cache Stateless Server". Para mejorar el rendimiento, la eficiencia y la escalabilidad del sistema, se agregan componentes de proxy y caché en esta arquitectura.
+		Es un estilo arquitectónico que combina características de los estilos ``Layered Client Server'' y ``Client Cache Stateless Server''. Para mejorar el rendimiento, la eficiencia y la escalabilidad del sistema, se agregan componentes de proxy y caché en esta arquitectura.
 		
-		El LC\$SS utiliza un enfoque de capas jerárquicas donde los clientes interactúan con un servidor que no mantiene estado (Client Stateless Server, CSS), y cada solicitud del cliente contiene toda la información necesaria para comprender y procesar. Además, incluye componentes de caché que almacenan copias temporales de respuestas previamente atendidas, así como componentes de proxy que funcionan como intermediarios entre los clientes y los servidores reales.
+		El LC\$SS utiliza un enfoque de capas jerárquicas donde los clientes interactúan con un servidor que no mantiene estado (Client Stateless Server, CSS), y cada solicitud del cliente contiene toda la información necesaria para ser comprendida y procesada. Además, incluye componentes de caché que almacenan copias temporales de respuestas previamente atendidas, así como componentes de proxy que funcionan como intermediarios entre los clientes y los servidores reales.
 		
-		En relación a los beneficios y contras, se suman ambos aspectos de LCS y C\$SS.
+		En relación con los beneficios y contras, se suman ambos aspectos de LCS y C\$SS.
 		
 		\subsubsection{Remote Session (RS)}
-		Proviene del estilo "Client-Server" (CS) y tiene como objetivo reducir la complejidad y aumentar la reutilización de los componentes del cliente. En esta arquitectura, los clientes inician una sesión en el servidor, solicitan sus servicios y cierran la sesión al final.
+		Proviene del estilo ``Client-Server'' (CS) y tiene como objetivo reducir la complejidad y aumentar la reutilización de los componentes del cliente. En esta arquitectura, los clientes inician una sesión en el servidor, solicitan sus servicios y cierran la sesión al final.
 		
 		Es un estilo arquitectónico que simplifica la interacción del cliente con el servidor durante una sesión activa al centralizar el estado de la aplicación en el servidor.
 		
 				
 		\paragraph{Beneficios}
 		\begin{itemize}	
-			\item {\textbf{Simplicidad}}: Es es más fácil de mantener y gestionar, ya que la interfaz del servidor es centralizada y los clientes solo necesitan interactuar con el servidor durante la sesión activa.
+			\item {\textbf{Simplicidad}}: Es más fácil de mantener y gestionar, ya que la interfaz del servidor es centralizada y los clientes solo necesitan interactuar con el servidor durante la sesión activa.
 			
 		\end{itemize}
 		
@@ -779,7 +782,7 @@
 		
 		
 		\subsubsection{Remote Data Access (RDA)}
-		Es un estilo arquitectónico que se deriva del estilo "Client-Server" (CS) y busca distribuir el estado de la aplicación entre el cliente y el servidor. En esta arquitectura, el cliente envía consultas al servidor remoto en un formato estándar, como SQL, y el servidor procesa estas consultas en un workspace para obtener un conjunto potencialmente grande de datos. Luego, el cliente puede realizar más operaciones sobre este dataset sin necesidad de transmitir todos los datos nuevamente.
+		Es un estilo arquitectónico que se deriva del estilo ``Client-Server'' (CS) y busca distribuir el estado de la aplicación entre el cliente y el servidor. En esta arquitectura, el cliente envía consultas al servidor remoto en un formato estándar, como SQL, y el servidor procesa estas consultas en un workspace para obtener un conjunto potencialmente grande de datos. Luego, el cliente puede realizar más operaciones sobre este dataset sin necesidad de transmitir todos los datos nuevamente.
 		\paragraph{Beneficios}
 		\begin{itemize}	
 			\item {\textbf{Performance}}: Datasets grandes pueden ser reducidos del lado del
@@ -816,17 +819,17 @@
 		
 		\paragraph{Desventajas}
 		\begin{itemize}	
-			\item {\textbf{Visibilidad}}: Es difícil saber que va a hacer un ejecutable mirando
+			\item {\textbf{Visibilidad}}: Es difícil saber qué va a hacer un ejecutable mirando
 			sólo su código fuente.			
 		\end{itemize}
 		\subsubsection{Remote Evaluation (REV)}
-		Es una mezcla de características de "máquina virtual" (VM) y "Client-Server" (CS). En esta arquitectura, el cliente sabe cómo (know-how) ejecutar un servicio, pero carece de los recursos necesarios para hacerlo eficientemente, como CPU, memoria o acceso a una fuente de datos. El cliente envía el "conocimiento" o el código requerido al servidor para que este último lo ejecute utilizando sus propios recursos en lugar de ejecutar la operación localmente. El cliente recibe el resultado una vez que se completa la ejecución en el servidor.
+		Es una mezcla de características de ``máquina virtual'' (VM) y ``Client-Server'' (CS). En esta arquitectura, el cliente sabe cómo (know-how) ejecutar un servicio, pero carece de los recursos necesarios para hacerlo eficientemente, como CPU, memoria o acceso a una fuente de datos. El cliente envía el ``conocimiento'' o el código requerido al servidor para que este último lo ejecute utilizando sus propios recursos en lugar de ejecutar la operación localmente. El cliente recibe el resultado una vez que se completa la ejecución en el servidor.
 		
 		SQL es un ejemplo común de esta arquitectura. El cliente envía una consulta SQL al servidor en este caso, que puede leer y ejecutar el código SQL para recuperar los datos de una base de datos necesarios.
 		
 		\paragraph{Beneficios}
 		\begin{itemize}	
-			\item {\textbf{Performance}}: En lugar de usar los recursos del servidor para realizar la operación del lado del cliente, donde podría haber falta de recursos, se utilizan los recursos del servidor.
+			\item {\textbf{Performance}}: En lugar de usar los recursos del cliente para realizar la operación, donde podría haber falta de recursos, se utilizan los recursos del servidor.
 			
 			\item {\textbf{Extensibilidad}}: Los componentes del servidor se pueden ajustar para satisfacer las necesidades particulares del cliente.
 			
@@ -841,15 +844,15 @@
 		
 		
 		\subsubsection{Code on Demand (COD)}\label{sec:code_on_demand}
-		Esta arquitectura, la cual deriva de VM y CS, el cliente tiene los recursos (como CPU, memoria o acceso a una fuente de datos) para ejecutar un servicio, pero no tiene el conocimiento o la experiencia necesarios para realizar la operación de manera efectiva. El cliente envía una solicitud al servidor pidiéndole el código que representa el "know-how" necesario en lugar de enviar los datos al servidor para que se realice el procesamiento. El cliente ejecuta el código del servidor localmente para completar la operación.
+		En esta arquitectura, que deriva de VM y CS, el cliente tiene los recursos (como CPU, memoria o acceso a una fuente de datos) para ejecutar un servicio, pero no tiene el conocimiento o la experiencia necesarios para realizar la operación de manera efectiva. El cliente envía una solicitud al servidor pidiéndole el código que representa el ``know-how'' necesario en lugar de enviar los datos al servidor para que se realice el procesamiento. El cliente ejecuta el código del servidor localmente para completar la operación.
 		
-		JavaScript (JS) en aplicaciones web es un ejemplo común de la arquitectura "Code on Demand". En este caso, el cliente tiene la capacidad de ejecutar código JavaScript, pero el servidor puede proporcionar scripts adicionales que se ejecutan localmente en el navegador del cliente para mejorar la experiencia del usuario o proporcionar funcionalidades adicionales.
+		JavaScript (JS) en aplicaciones web es un ejemplo común de la arquitectura ``Code on Demand''. En este caso, el cliente tiene la capacidad de ejecutar código JavaScript, pero el servidor puede proporcionar scripts adicionales que se ejecutan localmente en el navegador del cliente para mejorar la experiencia del usuario o proporcionar funcionalidades adicionales.
 		
 		\paragraph{Beneficios}
 			\begin{itemize}	
 				\item {\textbf{Configurabilidad y Extensibilidad}}: Permite agregar nuevas funcionalidades a un cliente ya desplegado sin cambiar el código fuente original.
 								
-				\item {\textbf{Escalabilidad}}: Utilizar los recursos de los clientes para ejecutar el código, reduce la carga en el servidor.
+				\item {\textbf{Escalabilidad}}: Al utilizar los recursos de los clientes para ejecutar el código, se reduce la carga en el servidor.
 				
 				\item {\textbf{Performance}}: La ejecución se realiza interactuando localmente con el
 				cliente, sin necesidad del servidor.
@@ -864,20 +867,20 @@
 		
 		
 		\subsubsection{Layered Code on Demand Client Cache Stateless Server (LCODC\$SS)}
-		Esta arquitectura deriva de LC\$SS + COD y se acerca más al concepto actual de la web y habla de casos en los que los navegadores permiten la ejecución de applets o extensiones de protocolos.
+		Esta arquitectura deriva de LC\$SS + COD y se acerca más al concepto actual de la web: contempla casos en los que los navegadores permiten la ejecución de applets o extensiones de protocolos.
 		
 		Como ejemplo, esta arquitectura podría ser un tipo de navegador web que permite la ejecución de extensiones o applets para mejorar la funcionalidad de las páginas web.
 		
-		Es importante destacar no se relaciona directamente con protocolos específicos como HTTP o REST. Esto se debe a que se refiere más al concepto general de permitir que el servidor proporcione código ejecutable al cliente y que este lo ejecute localmente para aumentar sus capacidades y mejorar la interacción con el servidor o otras aplicaciones web.
+		Es importante destacar que no se relaciona directamente con protocolos específicos como HTTP o REST. Esto se debe a que se refiere más al concepto general de permitir que el servidor proporcione código ejecutable al cliente y que este lo ejecute localmente para aumentar sus capacidades y mejorar la interacción con el servidor o otras aplicaciones web.
 		
 		\subsubsection{Mobile Agent (MA)}
-		Esta arquitectura combina las características REV y (COD). Un componente completo, que incluye su estado, código y datos, se mueve de un sitio remoto a otro mediante este método. Los agentes móviles pueden trabajar en ambos sentidos, es decir, pueden pasar del cliente al servidor ($c \to s$) o del servidor al cliente ($s \to  $c), dependiendo de la situación.
+		Esta arquitectura combina las características de REV y COD. En este método, un componente completo, que incluye su estado, código y datos, se mueve de un sitio remoto a otro. Los agentes móviles pueden trabajar en ambos sentidos, es decir, pueden pasar del cliente al servidor ($c \to s$) o del servidor al cliente ($s \to c$), dependiendo de la situación.
 		
 		Los agentes móviles ofrecen una gran flexibilidad en cuanto a cuándo y dónde hacer el movimiento. Por ejemplo, una aplicación en ejecución puede estar procesando una tarea específica y, en un momento determinado, decidir moverse a otra ubicación. Esto podría ocurrir para estar más cerca del próximo conjunto de datos o para aprovechar recursos específicos de otra máquina.
 		
 		\subsection{Peer To Peer Styles}
 			\subsubsection{Event Based Integration (EBI)}
-			Es un estilo de integración de componentes en el que se utiliza un enfoque Peer-to-Peer para la comunicación entre los componentes. En lugar de invocar directamente a otros componentes, un componente puede publicar uno o más eventos de esta manera. En lugar de ser invocados directamente, otros componentes se registran para recibir notificaciones sobre eventos específicos que puedan ser relevantes para vos. El sistema invoca a todos los componentes registrados cuando se produce un evento.
+			Es un estilo de integración de componentes en el que se utiliza un enfoque Peer-to-Peer para la comunicación entre los componentes. En lugar de invocar directamente a otros componentes, un componente puede publicar uno o más eventos. A su vez, otros componentes se registran para recibir notificaciones sobre eventos específicos que puedan ser relevantes para ellos. El sistema invoca a todos los componentes registrados cuando se produce un evento.
 			
 			
 			Algunos ejemplos de EBI son: Smalltalk, MVC, Publisher/Subscriber.
@@ -903,7 +906,7 @@
 					\item {\textbf{Escalabilidad}}: La cantidad de notificaciones de eventos y la tormenta de 
 					eventos pueden tener un impacto en el funcionamiento del sistema. Además, si no se gestiona adecuadamente, el filtrado de eventos puede agregar complejidad y crear puntos de falla únicos en el sistema.
 								
-					\item {\textbf{Entendimiento}}: Difícil predecir qué ocurrirá ante un evento (ej. orden).
+					\item {\textbf{Entendimiento}}: Es difícil predecir qué ocurrirá ante un evento (ej. orden).
 					Tampoco se sabe si alguien responderá.			
 					
 				\end{itemize}
@@ -912,7 +915,7 @@
 			\subsubsection{Distributed Objects (DO)}
 			Es un estilo de arquitectura Peer-to-Peer que organiza el sistema como un conjunto de componentes interactivos que actúan como pares. Este estilo representa los componentes como objetos con un estado interno oculto o protegido, así como sus operaciones asociadas. Las invocaciones de operaciones permiten que los objetos se comuniquen entre sí y pueden provocar una serie de invocaciones en otros objetos.
 			
-	 		Cada objeto funciona como una entidad abstracta que encapsula su estado interno y las operaciones que pueden realizar sobre ese estado. 
+	 		Cada objeto funciona como una entidad abstracta que encapsula su estado interno y las operaciones que se pueden realizar sobre ese estado. 
 	 		
 	 		Una operación en un objeto puede invocar operaciones en otros objetos, lo que puede dar lugar a cadenas de invocaciones que pueden extenderse a lo largo de varios objetos.
 	 		
@@ -920,7 +923,7 @@
 	 		
 			\paragraph{Beneficios}
 				\begin{itemize}	
-					\item {\textbf{Evolucionabilidad}}: Los objetos tiene interfaz pública, estado privado.
+					\item {\textbf{Evolucionabilidad}}: Los objetos tienen interfaz pública, estado privado.
 				
 					
 				\end{itemize}
@@ -935,12 +938,12 @@
 			
 			\subsubsection{Brokered Distributed Objects (BDO)}
 			
-			Este estilo es una mezcla de los estilos "Distributed Objects" (DO) y y "Layered Client Server" (LCS). Tiene como objetivo resolver el problema de la identidad de los objetos distribuidos al agregar un intermediario (broker) que facilita la comunicación entre los objetos distribuidos.
+			Este estilo es una mezcla de los estilos ``Distributed Objects'' (DO) y ``Layered Client Server'' (LCS). Tiene como objetivo resolver el problema de la identidad de los objetos distribuidos al agregar un intermediario (broker) que facilita la comunicación entre los objetos distribuidos.
 			
 			
 			El problema de la identidad se reduce ya que los clientes utilizan nombres de servicio generales en lugar de identidades específicas.
 			
-			El broker se encarga de identificar la identidad del objeto específico al que se envía la solicitud cuando un cliente envía una solicitud con un nombre de servicio genérico.
+			Cuando un cliente envía una solicitud con un nombre de servicio genérico, el broker se encarga de determinar la identidad del objeto específico al que va dirigida.
 			
 			\paragraph{Beneficios}
 			\begin{itemize}	
@@ -952,14 +955,14 @@
 			\paragraph{Desventajas}
 			\begin{itemize}	
 				
-				\item {\textbf{Eficienciay Performance percibida}}: Dado que cada solicitud debe pasar a través del intermediario para que se determine la identidad del objeto específico, el uso del intermediario introduce una mayor cantidad de interacciones de red.
+				\item {\textbf{Eficiencia y Performance percibida}}: Dado que cada solicitud debe pasar a través del intermediario para que se determine la identidad del objeto específico, el uso del intermediario introduce una mayor cantidad de interacciones de red.
 				
 			\end{itemize}
 		
 		\subsection{Data Centered Architectures}
-		Son un estilo arquitectónico en el que una estructura central de datos que almacena el estado del sistema es el componente principal. Este almacenamiento centralizado permite que los componentes independientes del sistema realicen sus operaciones y procesos.
+		Son estilos arquitectónicos en los que el componente principal es una estructura central de datos que almacena el estado del sistema. Este almacenamiento centralizado permite que los componentes independientes del sistema realicen sus operaciones y procesos.
 		
-		El  repositorio central puede variar según cómo se decida qué procesos ejecutar. El repositorio puede ser una \textbf{base de datos} que almacena los datos de entrada si el input stream decide/dispara los procesos a ejecutar.
+		El repositorio central puede variar según cómo se decida qué procesos ejecutar. El repositorio puede ser una \textbf{base de datos} que almacena los datos de entrada si el input stream decide/dispara los procesos a ejecutar.
 		
 		 Por otro lado, el repositorio puede ser conocido como \textbf{blackboard} si el estado actual del sistema determina qué procesos deben ejecutarse. En este caso, el repositorio es donde los componentes consultan y actualizan el estado compartido.
 			\subsubsection{Blackboard}
@@ -989,7 +992,7 @@
 			
 			Sin embargo, el flujo de datos puede estar sobrecargado y el filtro más lento puede afectar el rendimiento.
 			
-			Este estilo ve el sistema como una serie de transformaciones consecutivas. Es beneficioso cuando se puede abordar un problema mediante un flujo continuo de datos, como un "río". Permite medir el throughput del sistema, que es la cantidad de datos que puede procesar el sistema en un período de tiempo determinado. Una red puede ser representada por una tubería, donde la salida de un filtro puede ser la entrada de varios filtros, lo que permite un procesamiento de datos más complejo y eficiente.
+			Este estilo ve el sistema como una serie de transformaciones consecutivas. Es beneficioso cuando se puede abordar un problema mediante un flujo continuo de datos, como un ``río''. Permite medir el throughput del sistema, que es la cantidad de datos que puede procesar el sistema en un período de tiempo determinado. El sistema puede representarse como una red de tuberías, donde la salida de un filtro puede ser la entrada de varios filtros, lo que permite un procesamiento de datos más complejo y eficiente.
 			\paragraph{Beneficios}
 				\begin{itemize}	
 					\item {\textbf{Simplicidad}}: Se puede entender el sistema como una composición
@@ -1007,14 +1010,14 @@
 			\paragraph{Desventajas}
 				\begin{itemize}	
 					
-					\item {\textbf{Performance Perc}}: Largas tuberías generan retrasos de propagación. Podría verse afectada si el problema no se adapta al flujo de datos. Si uno o varios filtros no pueden procesar sus entradas incrementalmente y deben esperar a tener todos los datos disponibles para procesarlos en batch.
+					\item {\textbf{Performance Perc}}: Largas tuberías generan retrasos de propagación. Podría verse afectada si el problema no se adapta al flujo de datos, o si uno o varios filtros no pueden procesar sus entradas incrementalmente y deben esperar a tener todos los datos disponibles para procesarlos en batch.
 					
 				\end{itemize}
 			
 			
 			
 			\subsubsection{Uniform Pipe \& Filter (UPF)}
-			Es una extensión del estilo "Pipe \& Filter" (PF) que incluye una restricción adicional: \textbf{todos los filtros deben tener la misma interfaz}. Con esta restricción, los filtros que se desarrollaron de manera independiente se pueden combinar libremente para crear nuevas aplicaciones.
+			Es una extensión del estilo ``Pipe \& Filter'' (PF) que incluye una restricción adicional: \textbf{todos los filtros deben tener la misma interfaz}. Con esta restricción, los filtros que se desarrollaron de manera independiente se pueden combinar libremente para crear nuevas aplicaciones.
 			
 			\paragraph{Beneficios}
 			\begin{itemize}	
@@ -1036,15 +1039,15 @@
 			
 			\subsubsection{Batch Sequential}
 			
-			Es similar a "Pipe \& Filter" (PF) o "Uniform Pipe \& Filter"(UPF) pero con una diferencia clave: cada filtro debe terminar su procesamiento antes de que comience el siguiente filtro. Esto hace más sencillo dividir el sistema en subsistemas independientes, pero puede aumentar la latencia y reducir el throughput. Además, disminuye las oportunidades de competición en el procesamiento de datos. 
+			Es similar a ``Pipe \& Filter'' (PF) o ``Uniform Pipe \& Filter'' (UPF) pero con una diferencia clave: cada filtro debe terminar su procesamiento antes de que comience el siguiente filtro. Esto hace más sencillo dividir el sistema en subsistemas independientes, pero puede aumentar la latencia y reducir el throughput. Además, disminuye las oportunidades de concurrencia en el procesamiento de datos. 
 			
 		
 		
 		\subsection{La Web}
-		Es probable que, cuando nos pregunten que es la web, pensemos en el internet, pero ¿son lo mismo?
+		Es probable que, cuando nos pregunten qué es la Web, pensemos en Internet, pero ¿son lo mismo?
 		\subsubsection{¿La Web = Internet?}
 		La respuesta es no, no son lo mismo. 
-		El internet es un sistema de redes de computadoras interconectadas. Mientras que la Web es un sistema de documentos \textbf{hipertexto} interrelacionados, accedidos a traves de internet. Podríamos ver a la web como una aplicacion "corriendo" sobre internet.
+		Internet es un sistema de redes de computadoras interconectadas, mientras que la Web es un sistema de documentos \textbf{hipertexto} interrelacionados, accedidos a través de Internet. Podríamos ver a la Web como una aplicación ``corriendo'' sobre Internet.
 		
 		\subsubsection{Atributos de calidad}
 		\begin{itemize}		
@@ -1056,18 +1059,18 @@
 			
 			\item \textbf{Internet-Scale}
 			\begin{enumerate}
-				\item \textbf{Anarchic Scalability}: La web debe ser capaz de adaptarse y incorporar nuevas funcionalidades a medida que se desarrolla. Las relaciones a largo plazo y la coordinación centralizada entre los componentes del sistema no existen en la Web. Los clientes no pueden conocer todos los servidores y los servidores no pueden mantener un estado entre solicitudes.	
+				\item \textbf{Anarchic Scalability}: Los componentes deben seguir funcionando aun cuando reciben cargas imprevistas o datos mal formados o maliciosos. Las relaciones a largo plazo y la coordinación centralizada entre los componentes del sistema no existen en la Web. Los clientes no pueden conocer todos los servidores y los servidores no pueden mantener un estado entre solicitudes.	
 				
-				\item \textbf{Independent Deployment:}: Las partes del sistema de la Web pueden evolucionar a diferentes ritmos.
+				\item \textbf{Independent Deployment}: Las partes del sistema de la Web pueden evolucionar a diferentes ritmos.
 			\end{enumerate}
 			
-			\item \textbf{Distributed Hypermedia (Hipertexto Distribuido)}: Las instrucciones sobre qué se puede hacer con los datos se trata igual que a los datos. Tanto los datos como sus instrucciones son manejadas por el server.
+			\item \textbf{Distributed Hypermedia (Hipertexto Distribuido)}: Las instrucciones sobre qué se puede hacer con los datos se tratan igual que los datos. Tanto los datos como sus instrucciones son manejados por el servidor.
 
 			
 		\end{itemize}
 		
 		\subsection{REST}
-		Es un estilo arquitectónico para diseñar sistemas de software que se utilizan ampliamente en aplicaciones web y servicios web.
+		Es un estilo arquitectónico para diseñar sistemas de software que se utiliza ampliamente en aplicaciones web y servicios web.
 		
 		Los sistemas se consideran colecciones de recursos que se pueden identificar a través de URLs en el contexto de REST. Cada recurso es una entidad o un conjunto de datos que se puede acceder, crear, actualizar o eliminar a través de las operaciones estándar de HTTP, como GET (obtener), POST (crear), PUT (actualizar) y DELETE (eliminar). Estas operaciones se realizan mediante solicitudes HTTP a través de la web.
 		\begin{figure}[h]
@@ -1076,14 +1079,14 @@
 			\caption{Arquitectura REST}
 		\end{figure}
 		
-		La característica principal de REST es la interfaz uniforme (Uniform Interface), que establece un conjunto de reglas que todos los servicios web basados en REST deben seguir. Las siguientes tácticas son:
+		La característica principal de REST es la interfaz uniforme (Uniform Interface), que establece un conjunto de reglas que todos los servicios web basados en REST deben seguir. Sus restricciones son las siguientes:
 		\subsubsection{Uniform Interface}
 		\begin{itemize}		
-			\item \textbf{Identificación de Recursos}: Todo recurso debe tener 1 ID y el ID puede cambiar. (Simplicity, Visibility, Reusability).
+			\item \textbf{Identificación de Recursos}: Todo recurso debe tener un identificador (ID). El estado del recurso puede cambiar con el tiempo, pero su ID no. (Simplicity, Visibility, Reusability).
 			
-			\item \textbf{Los métodos de acceso con misma semántica}: todas las operaciones de acceso (métodos) tienen el mismo significado y comportamiento para todos los recursos en el sistema. (Visibility, Scalability y Availability (posibilita LS y \$)).
+			\item \textbf{Métodos de acceso con la misma semántica}: Todas las operaciones de acceso (métodos) tienen el mismo significado y comportamiento para todos los recursos en el sistema. (Visibility, Scalability y Availability (posibilita LS y \$)).
 			
-			\item \textbf{Manipulación de Recursos a través de Representaciones}: Los recursos pueden tener múltiples representaciones, como JSON, XML o HTML. Capturan el estado actual ó deseado de un recurso. Se transfieren entre componentes. (Simplicity, Visibility, Reusability,
+			\item \textbf{Manipulación de Recursos a través de Representaciones}: Los recursos pueden tener múltiples representaciones, como JSON, XML o HTML. Capturan el estado actual o deseado de un recurso. Se transfieren entre componentes. (Simplicity, Visibility, Reusability,
 			Evolvability (information hiding)).
 			
 			\item \textbf{Mensajes Auto-descriptivos}: Cada mensaje HTTP debe ser autodescriptivo y contener toda la información que el servidor necesita para comprender y procesar la solicitud. (Visibility, Scalability y Availability (posibilita LS y \$), Evolvability (extensible communication))
@@ -1093,21 +1096,21 @@
 		
 		
 		\subsubsection{Application State y Resource State}
-		La información sobre "dónde está" o en qué punto se encuentra un cliente durante su interacción con el servidor se refiere al Application State en REST. En otras palabras, el Application State indica el estado actual de la aplicación del cliente mientras interactúa con el servidor. (Esta del lado del cliente)
+		La información sobre ``dónde está'' o en qué punto se encuentra un cliente durante su interacción con el servidor se refiere al Application State en REST. En otras palabras, el Application State indica el estado actual de la aplicación del cliente mientras interactúa con el servidor. (Está del lado del cliente).
 		
 		Por otro lado, el Resource State se refiere al estado de un recurso específico que está almacenado en el servidor y que puede ser modificado a través del envío de representaciones o datos al servidor mediante solicitudes HTTP.
 
-		¿Y esto como se relaciona bien con REST? 
+		¿Y cómo se relaciona esto con REST?
 		
-		Bueno, en REST,  Application State y el Resource State se manejan de manera independiente. El servidor no almacena datos sobre el estado de la aplicación para cada cliente porque REST es una arquitectura sin estado. Por el contrario, el estado de la solicitud se almacena en el cliente y se envía al servidor para cada solicitud relevante. El servidor responde con el estado de recursos actualizado en respuesta a la solicitud del cliente.
+		Bueno, en REST, el Application State y el Resource State se manejan de manera independiente. El servidor no almacena datos sobre el estado de la aplicación para cada cliente porque REST es una arquitectura sin estado. Por el contrario, el estado de la aplicación se almacena en el cliente y se envía al servidor para cada solicitud relevante. El servidor responde con el estado de recursos actualizado en respuesta a la solicitud del cliente.
 		
 		\subsubsection{HyperMedia}\label{sec:hypermedia}
 		
-		En REST este concepto es clave, Hypermedia significa que la información de control de aplicación puede estar dentro o sobre la presentación de la información. Esta información sobre el control de aplicación se representa en un lenguaje que las máquinas pueden leer y se utiliza para conectar recursos y describir sus capacidades.
+		En REST este concepto es clave: hypermedia significa que la información de control de aplicación puede estar dentro o sobre la presentación de la información. Esta información sobre el control de aplicación se representa en un lenguaje que las máquinas pueden leer y se utiliza para conectar recursos y describir sus capacidades.
 		
 		Permite la navegación y la interacción entre recursos mediante enlaces (links). Los enlaces son relaciones hypermedia que permiten organizar la información de manera adaptable y brindan instrucciones sobre cómo usar la información en la aplicación. Estos enlaces permiten que el servidor muestre al cliente un menú de opciones que le permite acceder a recursos relacionados o realizar acciones específicas.
 		
-		La presencia de Hypermedia en las respuestas del servidor permite que el cliente interactúe dinámicamente con la aplicación, lo cual permite que el cliente decide qué es lo que va a pasar.
+		La presencia de Hypermedia en las respuestas del servidor permite que el cliente interactúe dinámicamente con la aplicación, lo cual permite que el cliente decida qué es lo que va a pasar.
 		
 		
 		
@@ -1135,12 +1138,12 @@
 				
 			\end{itemize}
 		
-		La tecnología de la información (IT) es esencial para el éxito de las organizaciones en el entorno empresarial actual. La adaptabilidad y la flexibilidad son esenciales para lidiar con los cambios y los desafíos que enfrentan los negocios. Para abordar la creciente complejidad y mantener el ritmo de la innovación, los SDGT se vuelven necesarios.
+		La tecnología de la información (IT) es esencial para el éxito de las organizaciones en el entorno empresarial actual. La adaptabilidad y la flexibilidad son esenciales para lidiar con los cambios y los desafíos que enfrentan los negocios. Para abordar la creciente complejidad y mantener el ritmo de la innovación, los SDGT se vuelven necesarios.
 		
-		Pero, los SDGT también enfrentan dificultades significativas. Un factor a tener en cuenta es la deuda técnica, que hace referencia a los problemas acumulados por la toma de decisiones técnicas subóptimas. Además, debido a la complejidad y la interdependencia de sus componentes, el mantenimiento de estos sistemas puede ser costoso y riesgoso.
+		Pero los SDGT también enfrentan dificultades significativas. Un factor a tener en cuenta es la deuda técnica, que hace referencia a los problemas acumulados por la toma de decisiones técnicas subóptimas. Además, debido a la complejidad y la interdependencia de sus componentes, el mantenimiento de estos sistemas puede ser costoso y riesgoso.
 		
 		\subsection{SOA}
-		\textit{"La arquitectura orientada a servicios (SOA) es un paradigma para la realización y el mantenimiento de procesos empresariales que abarcan grandes distribuidos".}
+		\textit{``La arquitectura orientada a servicios (SOA) es un paradigma para la realización y el mantenimiento de procesos empresariales que abarcan grandes sistemas distribuidos''.}
 		
 		Es un método arquitectónico para la creación de sistemas de software que se centra en la creación y ejecución de servicios. 
 		
@@ -1148,7 +1151,7 @@
 		\subsubsection{Servicios}
 		Estos servicios son unidades de funcionalidad autocontenidas que representan una acción o un conjunto de acciones relacionadas con la empresa. Cada servicio tiene una interfaz clara que explica sus funciones y cómo se puede acceder a ellas.
 		
-		\paragraph{¿Cuales son los aspectos claves?}
+		\paragraph{¿Cuáles son los aspectos clave?}
 		\begin{itemize}		
 			\item \textbf{Funcionalidad de negocio auto-contenida}: Cada servicio representa una función única que agrega valor al negocio. Estos servicios pueden ser básicos, como actualizar una dirección, o complejos, como procesar un pedido completo.
 			
@@ -1165,17 +1168,17 @@
 		
 		\paragraph{Atributos}
 			\begin{itemize}		
-				\item \textbf{Autocontenido}: Los servicios de SOA deben ser autónomos, autónomos e independientes. Esto significa que cada servicio debe ser lo más independiente posible de otros y no depender de otros para que funcione. Están hechos para que varios propietarios o clientes los usen.
+				\item \textbf{Autocontenido}: Los servicios de SOA deben ser autocontenidos, autónomos e independientes. Esto significa que cada servicio debe ser lo más independiente posible de los demás y no depender de otros para funcionar. Están hechos para que varios propietarios o clientes los usen.
 								
 				\item \textbf{Coarse-Grained}: En lugar de realizar tareas individuales muy pequeñas, los servicios en SOA suelen ser de grano grueso. Esto permite una mayor abstracción y flexibilidad, pero también puede afectar el rendimiento.
 					
-				\item \textbf{Visible}: Para llamar a un servicio, debes saber si existe y tener acceso a su interfaz				
+				\item \textbf{Visible}: Para llamar a un servicio, hay que saber que existe y tener acceso a su interfaz.
 				
-				\item \textbf{Stateless}: Los servicios en SOA se prefieren idealmente que no mantengan estado entre las solicitudes. Sin embargo, esto puede ser difícil de lograr en algunas circunstancias y se pueden tener servicios estatales.
+				\item \textbf{Stateless}: Idealmente, los servicios en SOA no mantienen estado entre solicitudes. Sin embargo, esto puede ser difícil de lograr en algunas circunstancias, por lo que puede haber servicios con estado (stateful).
 				
-				\item \textbf{Idempotente}: Los servicios deben ser idempotentes, lo que significa que ante la duda, permitir enviar la misma solicitud reiteradas veces
+				\item \textbf{Idempotente}: Los servicios deben ser idempotentes, lo que significa que, ante la duda, se puede enviar la misma solicitud reiteradas veces sin efectos adicionales.
 				
-				\item \textbf{Reusable/Componible}:  el objetivo es evitar la redundancia y fomentar la reutilización de los servicios. Los procesos comerciales deben dividirse en partes más pequeñas y reutilizables que se pueden agregar para crear funcionalidades más complejas.
+				\item \textbf{Reusable/Componible}: El objetivo es evitar la redundancia y fomentar la reutilización de los servicios. Los procesos comerciales deben dividirse en partes más pequeñas y reutilizables que se pueden agregar para crear funcionalidades más complejas.
 				
 				\item \textbf{Technical Services}: Existen servicios técnicos que son necesarios para el funcionamiento del sistema aunque no están relacionados con el negocio en sí.
 								
@@ -1184,7 +1187,7 @@
 			\end{itemize}
 		
 		\subsubsection{Enterprise Service Bus (ESB)}
-		Un Enterprise Service Bus (ESB) es la infraestructura de SOA; su objetivo es proporcionar interoperabilidad (conectividad datos y enrutamiento) combinada con  algunos servicios adicionales como seguridad supervisión, etc.
+		Un Enterprise Service Bus (ESB) es la infraestructura de SOA; su objetivo es proporcionar interoperabilidad (conectividad, transformación de datos y enrutamiento) combinada con algunos servicios adicionales como seguridad, supervisión, etc.
 		
 		\paragraph{Conexiones}
 		\begin{itemize}		
@@ -1196,9 +1199,9 @@
 			\end{figure}
 			
 			
-			\item \textbf{Conexión indirecta (Mediador)}: El consumidor solicita un servicio mediante tags en lugar de conocer directamente la dirección del proveedor. El bus de servicios empresariales (ESB) sirve como intermediario y envía la solicitud al servidor adecuado. Esto hace que la infraestructura sea menos acoplada y permite cambios dinámicos. 
+			\item \textbf{Conexión indirecta (Mediador)}: El consumidor solicita un servicio mediante tags en lugar de conocer directamente la dirección del proveedor. El bus de servicios empresariales (ESB) sirve como intermediario y envía la solicitud al proveedor adecuado. Esto hace que la infraestructura sea menos acoplada y permite cambios dinámicos. 
 			
-			\item \textbf{P2P + Name Server}: Cuando se utiliza la conexión punto a punto, esta es una alternativa. La implementación de la indirección se lleva a cabo mediante el uso de un name server, que almacena las direcciones físicas de cada servicio.
+			\item \textbf{P2P + Name Server}: Es una alternativa dentro de la conexión punto a punto. La implementación de la indirección se lleva a cabo mediante el uso de un name server, que almacena las direcciones físicas de cada servicio.
 							
 			
 			\item \textbf{P2P + Interceptor/Proxy}: El proveedor de servicio es sustituido por un Load Balancer o interceptor que recibe los mensajes del consumidor. Ante la recepción de un mensaje, deriva el pedido a un proveedor de servicio que conoce, lo que permite la implementación de la tolerancia a fallos y el balanceo de carga. Además, los interceptores pueden brindar servicios adicionales, como protección y vigilancia.
@@ -1216,18 +1219,18 @@
 		\end{itemize}
 		
 			
-		\paragraph{Valores agregados} SOA con ESB se puede clasificar en dos categorías principales
+		\paragraph{Valores agregados} Un ESB puede aportar los siguientes valores agregados:
 		\begin{itemize}		
 			
 			\item \textbf{Data Mapping}: Puede facilitar la transformación de datos entre formatos definidos por varios servicios.
 			
-			\item \textbf{Ruteo Inteligente}: Puede administrar la tolerancia a fallos, optimizar el balanceo de carga entre los diferentes servicios y realizar un ruteo inteligente de mensajes. Además, puede priorizar los mensajes según los estándares de su empresa.
+			\item \textbf{Ruteo Inteligente}: Puede administrar la tolerancia a fallos, optimizar el balanceo de carga entre los diferentes servicios y realizar un ruteo inteligente de mensajes. Además, puede priorizar los mensajes según las reglas de negocio de la empresa.
 			
 						
 			\item \textbf{Seguridad}: Puede proporcionar mecanismos de seguridad para limitar el acceso a ciertos servicios, permitiendo que solo los clientes autorizados los usen.
 			
 			
-			\item \textbf{Reliability (Fiabilidad)}: Puede aumentar la confiabilidad de ciertos protocolos de comunicación mediante la implementación de mecanismos de gestión de errores y garantizar la recepción de mensajes.
+			\item \textbf{Reliability (Fiabilidad)}: Puede aumentar la confiabilidad de ciertos protocolos de comunicación mediante la implementación de mecanismos de gestión de errores y de garantía de recepción de mensajes.
 			
 						
 			\item \textbf{Monitoring \& Logging}: Permite realizar el seguimiento y registro de la actividad del sistema distribuido.
@@ -1253,9 +1256,9 @@
 		
 			\item {\textbf{Multitenancy}}: Un solo software o servicio en la nube puede atender a muchos clientes al mismo tiempo y mantener a cada consumidor aislado. Esto se logra mediante la compartición de recursos.
 		
-			\item {\textbf{Elasticity}}: Según las necesidades de carga, la nube permite la escala automática y dinámica de los recursos. Para escalar los recursos hacia arriba o hacia abajo, se pueden establecer condiciones predeterminadas o basadas en eventos en tiempo real.
+			\item {\textbf{Elasticity}}: Según las necesidades de carga, la nube permite el escalado automático y dinámico de los recursos. Para escalar los recursos hacia arriba o hacia abajo, se pueden establecer condiciones predeterminadas o basadas en eventos en tiempo real.
 			
-			\item {\textbf{Measured Usage}}: El uso de los recursos informáticos se monitorea y registra minuciosamente. El modelo "Pay-as-you-go", también conocido como "pago por uso", permite que los usuarios paguen solo por los recursos que han utilizado. El monitoreo continuo de los recursos también ayuda a generar reportes y análisis.
+			\item {\textbf{Measured Usage}}: El uso de los recursos informáticos se monitorea y registra minuciosamente. El modelo ``Pay-as-you-go'', también conocido como ``pago por uso'', permite que los usuarios paguen solo por los recursos que han utilizado. El monitoreo continuo de los recursos también ayuda a generar reportes y análisis.
 			
 			
 			\item {\textbf{Resiliency}}: La distribución redundante de los recursos en la nube aumenta la disponibilidad y la resiliencia ante fallas o desastres.
@@ -1267,7 +1270,7 @@
 			
 			\item {\textbf{Lead strategy}}: Antes de que ocurra un aumento significativo en la carga del sistema, se anticipa la demanda futura y se agrega capacidad. El objetivo es prever el crecimiento y asegurarse de que los recursos estén disponibles para manejarlo de manera efectiva.
 			
-			\item {\textbf{Lag strategy}}: La capacidad se agrega cuando los recursos se utilizan al máximo o incluso cuando la sobrecarga del sistema daña el rendimiento del sistema.
+			\item {\textbf{Lag strategy}}: La capacidad se agrega cuando los recursos se utilizan al máximo o incluso cuando la sobrecarga ya afecta el rendimiento del sistema.
 			
 			\item {\textbf{Match strategy}}: Los incrementos y decrementos de capacidad se realizan en cantidades limitadas y se ajustan según la demanda real.
 			
@@ -1300,11 +1303,11 @@
 			\item {\textbf{Private Cloud}}: Los servicios cloud y la infraestructura son propiedad exclusiva de una sola organización. Puede estar alojado en la sede de la organización o en un centro de datos dedicado.
 			
 			
-			\item {\textbf{Community Cloud}}: Un proveedor de cloud proporciona infraestructura y servicios de cloud que están disponibles para el uso público a través de Internet.
+			\item {\textbf{Community Cloud}}: La infraestructura y los servicios de cloud son compartidos por varias organizaciones de una comunidad con intereses o requisitos comunes (por ejemplo, de seguridad o de cumplimiento normativo). Puede ser administrada por las propias organizaciones o por un tercero.
 			
 
 				
-			\item {\textbf{Hybrid Cloud}}: s una mezcla de nubes privadas y públicas que están conectadas y funcionan como una infraestructura única.
+			\item {\textbf{Hybrid Cloud}}: Es una mezcla de nubes privadas y públicas que están conectadas y funcionan como una infraestructura única.
 			
 		\end{enumerate}
 		
@@ -1313,7 +1316,7 @@
 		\subsubsection{N-tier}
 		Es un enfoque común en el diseño de sistemas de software y aplicaciones que divide las funcionalidades del sistema en capas físicamente separadas y bien definidas. Cada capa realiza un conjunto de tareas específicas y se comunica con las capas cercanas a través de interfaces bien definidas. 
 		
-		Cada capa puede escalar horizontalmente agregando más instancias o recursos para manejar una mayor carga de trabajo
+		Cada capa puede escalar horizontalmente agregando más instancias o recursos para manejar una mayor carga de trabajo.
 		
 		
 		\subsubsection{Web-Queue-Worker}
@@ -1321,51 +1324,51 @@
 		
 		\textbf{El front-end} es la capa de presentación y UI del sistema. Puede ser una aplicación web, móvil o otra forma de interacción con el usuario. El front-end de este patrón no almacena información sobre el estado del usuario o la sesión.
 		
-		\textbf{La cola} es un método para encolar y desencolar las tareas. En lugar de procesar la solicitud de inmediato, el front-end la encola en la cola para su posterior procesamiento. 
+		\textbf{La cola} es un método para encolar y desencolar las tareas. En lugar de procesar la solicitud de inmediato, el front-end la coloca en la cola para su posterior procesamiento. 
 		
-		\textbf{Los workers} son los procesos o servicios que consumen tareas en segundo plano y las procesan en la cola. Los workers son stateless y están construidos para ser extremadamente escalables y tolerantes a fallas. Para manejar una mayor carga de trabajo, pueden ejecutarse en múltiples instancias o servidores. Cada worker toma una tarea de la cola, la procesa y luego la marca como completa.
+		\textbf{Los workers} son los procesos o servicios que toman tareas de la cola y las procesan en segundo plano. Los workers son stateless y están construidos para ser extremadamente escalables y tolerantes a fallas. Para manejar una mayor carga de trabajo, pueden ejecutarse en múltiples instancias o servidores. Cada worker toma una tarea de la cola, la procesa y luego la marca como completa.
 		
-		Este tipo de arquitectura es particularmente útil para sistemas que deben manejar tareas complejas o una gran cantidad de trabajo porque permite escalar horizontalmente tanto el front-end como los empleados para satisfacer la creciente demanda de tareas.
+		Este tipo de arquitectura es particularmente útil para sistemas que deben manejar tareas complejas o una gran cantidad de trabajo porque permite escalar horizontalmente tanto el front-end como los workers para satisfacer la creciente demanda de tareas.
 		
 		
 		\subsubsection{Event-driven}
-		Es una forma de diseñar sistemas distribuidos en los que los eventos comunican las partes del sistema. En este patrón, los consumidores (o subscriptores) reaccionan a los eventos para realizar acciones específicas, y los productores generan eventos que representan cambios o sucesos importantes en el sistema.
+		Es una forma de diseñar sistemas distribuidos en los que las partes del sistema se comunican mediante eventos. En este patrón, los consumidores (o suscriptores) reaccionan a los eventos para realizar acciones específicas, y los productores generan eventos que representan cambios o sucesos importantes en el sistema.
 		
-		Los productores y los consumidores no necesitan conocerse directamente porque están desacoplados entre sí. Los productores y los consumidores no son conscientes de qué componentes están produciendo los eventos.
+		Los productores y los consumidores no necesitan conocerse directamente porque están desacoplados entre sí. Un productor no sabe qué consumidores están escuchando sus eventos.
 		
-		Los clientes de eventos también están desconectados. Cada cliente ve todos los eventos que se producen, pero decide por sí mismo cómo responder a cada uno.
+		Los consumidores también están desacoplados entre sí. Cada consumidor ve todos los eventos que se producen, pero decide por sí mismo cómo responder a cada uno.
 		
 		\paragraph{Modelos}
 		\begin{itemize}
-			\item {\textbf{Pub/sub}}: Los eventos se envían an un canal central, que puede ser un bus de eventos o un tema, y los clientes pueden suscribirse an este canal para recibir los eventos que les interesen. Los nuevos subscriptores no pueden ver los eventos anteriores, por lo que no se pueden reproducir. 
+			\item {\textbf{Pub/sub}}: Los eventos se envían a un canal central, que puede ser un bus de eventos o un tópico, y los consumidores pueden suscribirse a este canal para recibir los eventos que les interesen. Los nuevos suscriptores no pueden ver los eventos anteriores, por lo que no se pueden reproducir. 
 			\item {\textbf{Event Streaming}}: Los eventos se escriben en un registro persistente y ordenado. Los clientes pueden leer los eventos de cualquier parte del flujo, lo que les permite reproducir eventos anteriores si es necesario.
 		\end{itemize}
 		
 		
-		\subsubsection{Micorservices}
+		\subsubsection{Microservices}
 		Son un enfoque arquitectónico en el que una aplicación monolítica se divide en servicios más pequeños, autónomos y desacoplados, cada uno encargado de una función o área funcional específica de la empresa. Cada microservicio funciona en su propio entorno y tiene su propio código fuente, lo que permite su despliegue independiente y manejo por un pequeño grupo de desarrolladores.
 		
 		Los microservicios no tienen dependencias directas entre sí, pero se comunican entre sí a través de APIs. Esto permite que cada microservicio se desarrolle y se actualice sin interferir con los demás.
 		
 		Ofrecen tolerancia a fallos, lo que significa que si un microservicio falla, no afectará el funcionamiento de toda la aplicación porque están diseñados para ser resistentes y recuperarse de manera independiente. Además, los microservicios pueden escalarse de manera independiente según las necesidades de carga de trabajo, y un servicio de balanceo de carga puede redirigir solicitudes a los microservicios adecuados para lograr una distribución equilibrada de la carga. Esto permite la escalabilidad y el balanceo de carga flexibles. 
 		
-		Además, los microservicios no están limitados an una sola tecnología, lo que significa que cada microservicio puede utilizar la tecnología más adecuada para su función particular. Un mecanismo de descubrimiento de servicios, que asigna servicios a los nodos y permite identificar fallas y reequilibrar los servicios según sea necesario, es necesario para que los microservicios se comuniquen entre sí.
+		Además, los microservicios no están limitados a una sola tecnología, lo que significa que cada microservicio puede utilizar la tecnología más adecuada para su función particular. Un mecanismo de descubrimiento de servicios, que asigna servicios a los nodos y permite identificar fallas y reequilibrar los servicios según sea necesario, es necesario para que los microservicios se comuniquen entre sí.
 		
 		\subsection{Usage Patterns}
 		\subsubsection{Auto-Scaling}\label{sec:auto_scaling}
-		Consiste en implementar un proceso de asignación dinámica de recursos, como nodos, almacenamiento y colas, para adecuar la capacidad de la aplicación a la demanda en tiempo real, siguiendo una estrategia de "match strategy".
+		Consiste en implementar un proceso de asignación dinámica de recursos, como nodos, almacenamiento y colas, para adecuar la capacidad de la aplicación a la demanda en tiempo real, siguiendo una estrategia de ``match strategy''.
 		
-		Esto favorece a la Performance, Scalability, Elasticity.
+		Esto favorece la Performance, la Scalability y la Elasticity.
 		
 		\paragraph{Consideraciones para la implementación:} 		
 		El sistema debe ser stateless y escalable horizontalmente para evitar la dependencia de instancias específicas.
 		
-		\paragraph{Buenas practicas} 		
+		\paragraph{Buenas prácticas} 		
 			\begin{enumerate}
-				\item Usar las características de escaneo automático proporcionadas por el proveedor de la nube, ya que crear una solución personalizada requeriría mucho trabajo. 
+				\item Usar las características de escalado automático proporcionadas por el proveedor de la nube, ya que crear una solución personalizada requeriría mucho trabajo. 
 				\item Escalar cada componente o subsistema por sí solo para aumentar la flexibilidad y la eficiencia.
-				\item establecer límites inferiores y superiores en las reglas de autoescala para evitar escalamientos excesivos o innecesarios.
-				\item Tener en cuenta las tareas de larga duración que podrían afectar el escalamiento y, si es posible, refactorice hacia un patrón de tuberías y filtros o utilice puntos de control en un almacenamiento externo para administrar tareas en progreso.
+				\item Establecer límites inferiores y superiores en las reglas de autoescalado para evitar escalamientos excesivos o innecesarios.
+				\item Tener en cuenta las tareas de larga duración que podrían afectar el escalamiento y, si es posible, refactorizar hacia un patrón de tuberías y filtros o utilizar puntos de control en un almacenamiento externo para administrar tareas en progreso.
 			\end{enumerate}
 		
 		\subsubsection{Queue-Based Load Leveling}
@@ -1374,55 +1377,54 @@
 			\begin{enumerate}
 				\item Incluso en situaciones de alta demanda, asegura que cada mensaje se envíe al menos una vez. 
 				\item Permite ajustar la cantidad de colas y servicios según la demanda, lo que aumenta la flexibilidad y la capacidad de escala.
-				\item establecer límites inferiores y superiores en las reglas de autoescala para evitar escalamientos excesivos o innecesarios.
 				\item La comunicación es unidireccional, lo que significa que el servicio procesa los mensajes de los clientes en orden de llegada.
 			\end{enumerate}
 
 		Sin embargo, es importante tener en cuenta que este patrón por sí solo no es suficiente si se espera que el servicio responda a los mensajes enviados.
 		
-		Esto favorece a la Availability, Performance, Scalability.
+		Esto favorece la Availability, la Performance y la Scalability.
 		
 		\subsubsection{Competing Consumers}
-		Este patrón se puede utilizar para lograr que múltiples componentes "consumers" (workers) procesen mensajes de múltiples  "producers" (apps) de forma concurrente. Este método establece una cola de mensajes entre las instancias de los productores y las instancias de los consumidores. Cada app instance puede enviar mensajes a la cola, y cualquier worker en un pool de workers puede procesar estos mensajes de manera competitiva.
+		Este patrón se puede utilizar para lograr que múltiples componentes ``consumers'' (workers) procesen mensajes de múltiples ``producers'' (apps) de forma concurrente. Este método establece una cola de mensajes entre las instancias de los productores y las instancias de los consumidores. Cada app instance puede enviar mensajes a la cola, y cualquier worker en un pool de workers puede procesar estos mensajes de manera competitiva.
 		
 		Algunos beneficios de este patrón son los siguientes:
 		\begin{enumerate}
-			\item \textbf{Procesamiento asíncrónico}: los mensajes se procesan de forma asíncrona, lo que permite a los empleados trabajar juntos sin esperar respuestas inmediatas.
+			\item \textbf{Procesamiento asincrónico}: Los mensajes se procesan de forma asíncrona, lo que permite a los workers trabajar juntos sin esperar respuestas inmediatas.
 			
-			\item \textbf{Garantiza de entrega}: La cola garantiza que cada mensaje sea entregado al menos una vez, lo que garantiza "al menos una vez de procesamiento".
+			\item \textbf{Garantía de entrega}: La cola garantiza que cada mensaje sea entregado al menos una vez (semántica \textit{at-least-once}).
 			\item \textbf{Escalabilidad y disponibilidad}: Los trabajadores pueden escalar horizontalmente para manejar una gran cantidad de solicitudes, y gracias a la redundancia, el sistema sigue funcionando correctamente si un trabajador falla.
-			\item \textbf{Alta disponibilidad}: si un trabajador falla durante el procesamiento de un mensaje, este vuelve a la cola y puede ser tomado por otro trabajador.
-			\item \textbf{Sin coordinación}: No es necesaria la coordinación entre los empleados ni entre las aplicaciones y los empleados, lo que simplifica la arquitectura y aumenta la flexibilidad.		
+			\item \textbf{Alta disponibilidad}: Si un trabajador falla durante el procesamiento de un mensaje, este vuelve a la cola y puede ser tomado por otro trabajador.
+			\item \textbf{Sin coordinación}: No es necesaria la coordinación entre los workers ni entre las aplicaciones y los workers, lo que simplifica la arquitectura y aumenta la flexibilidad.		
 				
 		\end{enumerate}
 		
 		
-		Esto favorece a la Availability, Performance, Scalability.
+		Esto favorece la Availability, la Performance y la Scalability.
 		
 		\subsubsection{Priority Queue}
-		Se puede utilizar una cola de prioridad o cola de prioridad para priorizar solicitudes y respetar diferentes SLAs para clientes particulares. En esta cola, en lugar de seguir el orden de llegada normal (FIFO - First-In-First-Out), los mensajes se ordenan según su nivel de prioridad. De esta manera, los pedidos con alta prioridad se procesarán antes que los de baja prioridad, sin importar el orden en que lleguen.
+		Se puede utilizar una cola de prioridad (priority queue) para priorizar solicitudes y respetar diferentes SLAs para clientes particulares. En esta cola, en lugar de seguir el orden de llegada normal (FIFO - First-In-First-Out), los mensajes se ordenan según su nivel de prioridad. De esta manera, los pedidos con alta prioridad se procesarán antes que los de baja prioridad, sin importar el orden en que lleguen.
 		
-		Un cliente recibe prioridad según sus necesidades y SLAs específicos. Los mensajes se insertan en la cola de acuerdo con esta prioridad, y los empleados o clientes procesan los mensajes de acuerdo con su nivel de prioridad. Esto garantiza que las solicitudes de alta prioridad sean atendidas rápidamente, incluso si llegan después de solicitudes de baja prioridad.
+		Un cliente recibe prioridad según sus necesidades y SLAs específicos. Los mensajes se insertan en la cola de acuerdo con esta prioridad, y los consumidores (workers) procesan los mensajes de acuerdo con su nivel de prioridad. Esto garantiza que las solicitudes de alta prioridad sean atendidas rápidamente, incluso si llegan después de solicitudes de baja prioridad.
 		
-		Esto favorece a la Performance, Scalability.
+		Esto favorece la Performance y la Scalability.
 		
 		\subsubsection{Health Endpoint Monitoring}
-		Este patrón sirve para verificar si un servicio esta cumpliendo con el nivel requedo de availability y performance. Implica la implementación de un punto de control de salud, también conocido como healt endpoint, en el servicio. Este punto de control proporciona información sobre el estado del servicio y responde a solicitudes específicas.
+		Este patrón sirve para verificar si un servicio está cumpliendo con el nivel requerido de availability y performance. Implica la implementación de un punto de control de salud, también conocido como health endpoint, en el servicio. Este punto de control proporciona información sobre el estado del servicio y responde a solicitudes específicas.
 		
-		Si es necesario para garantizar la seguridad del servicio, el monitoreo de los healt endpoints se puede realizar desde una variedad de ubicaciones. Además, es posible incorporar pruebas automáticas en el healt endpoint para que el propio servicio realice pruebas automáticas para verificar su salud y funcionalidad.
+		Si es necesario para garantizar la seguridad del servicio, el monitoreo de los health endpoints se puede realizar desde una variedad de ubicaciones. Además, es posible incorporar pruebas automáticas en el health endpoint para que el propio servicio realice pruebas automáticas para verificar su salud y funcionalidad.
 		
 		
-		Esto favorece a la Performance, Availability.
+		Esto favorece la Performance y la Availability.
 		
 		\subsubsection{Retry} \label{sec:retry}
-		Este patrón sirve para manejar fallas temporales de los servicios que consumen. Implica la implementación lógica de reintentos (retry) que consideren un lapso de tiempo(delay) entre cada reintento. Este punto de control proporciona información sobre el estado del servicio y responde a solicitudes específicas.
+		Este patrón sirve para manejar fallas temporales de los servicios que consumen. Implica la implementación de una lógica de reintentos (retry) que considere un lapso de tiempo (delay) entre cada reintento.
 		
 		La definición de una política de reintentos adecuada debe tener en cuenta la cantidad de reintentos y el tiempo que transcurre entre ellos. La política de repetición debe ajustarse al tipo de interacción cliente-servidor para evitar una sobrecarga del servicio. Los reintentos son menos peligrosos si la operación es idempotente (no tiene efectos secundarios cuando se repite).
 		
 		Mantener registros de intentos fallidos ayuda a detectar y analizar problemas futuros. Una política de reintentos bien planificada puede mejorar la experiencia del usuario al manejar de manera más elegante las fallas temporales que pueden ocurrir en entornos cloud u otros entornos distribuidos.
 		
 		
-		Esto favorece a la Availability.
+		Esto favorece la Availability.
 		
 		\subsubsection{Circuit Breaker}\label{sec:circuit_breaker}
 		Este patrón sirve para evitar que las aplicaciones invoquen servicios que están caídos y detectar cuando el problema está resuelto. Implica la implementación de un proxy que registre la	cantidad de fallas recientes y use esos	datos para decidir si invocar el servicio o	si fallar inmediatamente.
@@ -1431,32 +1433,32 @@
 			\begin{enumerate}
 				\item \textbf{Closed}: Pasan todos los requests.
 				
-				\item \textbf{Open}: Devuelve excepción inmediatamente.
+				\item \textbf{Open}: Devuelve una excepción inmediatamente.
 				\item \textbf{Half-Open}: Un número limitado de	requests pasan, los otros fallan.
 			
 			\end{enumerate}
 		
-		Esto favorece a la Availability.
+		Esto favorece la Availability.
 		
 		\subsubsection{Throttling}
-		Este patrón sirve para controlar el uso de recursos para cumplir con SLAs sin utilizar unicamente auto-scaling. Implica en imponer un limite al uso de recursos, que al alcanzarse, el sistema comenzará a regular los requests de los clientes.
+		Este patrón sirve para controlar el uso de recursos para cumplir con SLAs sin utilizar únicamente auto-scaling. Implica imponer un límite al uso de recursos que, al alcanzarse, el sistema comenzará a regular los requests de los clientes.
 		
 		Para implementar el throttling, se pueden rechazar las solicitudes de clientes que han excedido el límite establecido durante un cierto período de tiempo, degradar o deshabilitar funcionalidades no esenciales para liberar recursos o priorizar las solicitudes según los acuerdos de nivel de servicio (SLA) para dar prioridad a las solicitudes de alta prioridad.
 		
-		Esto favorece a la Availability, Performance.
+		Esto favorece la Availability y la Performance.
 		
 				
 		\subsubsection{Sharding}\label{sec:sharding_generico}
-		Este patrón sirve para superar las limitaciones de espacio, recursos, ancho de banda y geograficas de un almacenamiento de datos en 1 server. Implica en dividir el almacenamiento de datos en particiones "horizontales" (shards).
+		Este patrón sirve para superar las limitaciones de espacio, recursos, ancho de banda y geográficas de un almacenamiento de datos en un único servidor. Implica dividir el almacenamiento de datos en particiones ``horizontales'' (shards).
 		
 		Cada shard funciona en su propio servidor y es independiente del resto, lo que permite escalar horizontalmente y equilibrar la carga entre shards. La ubicación geográfica de los shards también puede optimizarse para estar cerca de los usuarios que accederán a los datos.
 		
 		Cada shard contiene un conjunto de datos que pertenecen a un rango determinado por una clave de shard o clave de partición. Existe una variedad de enfoques para asignar los datos a los shards, incluida la estrategia de mapa de shardkey-shard, la estrategia de rango que agrupa elementos relacionados o la estrategia de hash que usa una función de hash para asignar los datos.
 		
-		Esto favorece a la Availability, Performance.
+		Esto favorece la Availability y la Performance.
 		
 		
-		\section{Base de datos relacionales}
+		\section{Bases de datos relacionales}
 		Una base de datos relacional es un tipo de sistema de gestión de bases de datos (DBMS) que organiza y almacena datos en forma de tablas conectadas. Es una solución para la gestión y recuperación de datos estructurados.
 		
 		
@@ -1467,8 +1469,7 @@
 			\item {\textbf{Modelo (casi) estándar}}: Utilizan un modelo de operación casi estándar.
 			Casi todas las BD utilizan el mismo lenguaje (SQL) para consultas y manipulación de datos, con pequeñas diferencias comerciales.
 			
-			\item {\textbf{Concurrencia}}: Utilizan un modelo de operación casi estándar.
-			Casi todas las BD utilizan el mismo lenguaje (SQL) para consultas y manipulación de datos, con pequeñas diferencias comerciales.
+			\item {\textbf{Concurrencia}}: Permiten que múltiples usuarios y aplicaciones accedan a los mismos datos al mismo tiempo de forma controlada, mediante transacciones.
 		\end{itemize}
 		
 	
@@ -1493,7 +1494,7 @@
 		\subsubsection{Escalabilidad}\label{sec:escalabilidad_sql}
 		Es una preocupación cada vez mayor para los sistemas que deben manejar una mayor cantidad de usuarios y una mayor cantidad de datos. Facebook, Google, Amazon y Twitter son plataformas notables con grandes cantidades de tráfico y datos. El aumento de la demanda requiere mayores recursos, y la escalabilidad vertical (mejorando un solo servidor) con frecuencia tiene limitaciones.
 		
-		La escalabilidad horizontal obtenida a través de la formación de clústeres se busca como solución en respuesta. Esto implica distribuir la carga mediante el agregado de varios servidores, que generalmente están equipados con hardware más económico. Esta técnica mejora el rendimiento y ofrece resistencia a fallos al eliminar puntos de ruptura específicos.
+		Como respuesta, se busca la escalabilidad horizontal mediante la formación de clústeres. Esto implica distribuir la carga mediante el agregado de varios servidores, que generalmente están equipados con hardware más económico. Esta técnica mejora el rendimiento y ofrece resistencia a fallos al eliminar puntos únicos de falla.
 		
 		Sin embargo, las necesidades mencionadas anteriormente pueden diferir de las de las empresas promedio. La escalabilidad sigue siendo importante para muchos negocios, pero la escala de esta necesidad varía según el tamaño y el alcance de la empresa. Las grandes empresas tienen problemas únicos debido a su gran cantidad de usuarios y datos, pero las empresas más pequeñas pueden beneficiarse de soluciones de escalabilidad más modestas. Por lo tanto, la estrategia de escalabilidad debe adaptarse a las situaciones y objetivos únicos de cada empresa.
 		
@@ -1501,20 +1502,20 @@
 		\subsubsection{Attack of the Clusters}
 		Las bases de datos relacionales \textbf{no} fueron originalmente concebidas para funcionar en entornos de clústeres.
 		
-		En un esfuerzo por distribuir la carga, se utiliza una estrategia conocida como "sharding", en la que varios servidores se utilizan para administrar varios conjuntos de datos. A pesar de que esta técnica distribuye la carga, la responsabilidad de controlar el "sharding" recae en la propia aplicación. Sin embargo, las capacidades como consultas integradas, integridad referencial, transacciones y consistencia entre fragmentos de datos se pierden como resultado de esta fragmentación. Al intentar expandirse a sistemas de bases de datos relacionales de esta manera, también pueden surgir los costos de licenciamiento y otros problemas.								
+		En un esfuerzo por distribuir la carga, se utiliza una estrategia conocida como ``sharding'', en la que varios servidores se utilizan para administrar varios conjuntos de datos. A pesar de que esta técnica distribuye la carga, la responsabilidad de controlar el ``sharding'' recae en la propia aplicación. Sin embargo, las capacidades como consultas integradas, integridad referencial, transacciones y consistencia entre fragmentos de datos se pierden como resultado de esta fragmentación. Al intentar escalar bases de datos relacionales de esta manera, también pueden surgir costos de licenciamiento y otros problemas.								
 		
 		\section{NoSQL}
-		NoSQL, también conocido como "Not only SQL", es un término que incluye una serie de bases de datos que están destinadas a satisfacer las demandas del siglo XXI, la mayoría de las cuales son de código abierto. Estas bases de datos no emplean el modelo relacional convencional de las bases de datos ni el lenguaje SQL. Aunque algunas bases de datos NoSQL tienen un lenguaje de consultas propio, aún no han utilizado el estándar SQL básico.
+		NoSQL, también conocido como ``Not only SQL'', es un término que incluye una serie de bases de datos que están destinadas a satisfacer las demandas del siglo XXI, la mayoría de las cuales son de código abierto. Estas bases de datos no emplean el modelo relacional convencional de las bases de datos ni el lenguaje SQL. Aunque algunas bases de datos NoSQL tienen un lenguaje de consultas propio, no utilizan el estándar SQL.
 		
-		Las bases de datos NoSQL tienen la capacidad de funcionar con grupos, lo que afecta su modelo de datos y estrategia de consistencia. Las bases de datos NoSQL ofrecen una variedad de opciones para la consistencia y la distribución en entornos distribuidos, en lugar de usar transacciones ACID como las bases de datos relacionales.
+		Las bases de datos NoSQL tienen la capacidad de funcionar en clústeres, lo que afecta su modelo de datos y estrategia de consistencia. Las bases de datos NoSQL ofrecen una variedad de opciones para la consistencia y la distribución en entornos distribuidos, en lugar de usar transacciones ACID como las bases de datos relacionales.
 		
-		Las bases de datos NoSQL también funcionan sin esquemas fijos, lo que significa que pueden agregar campos a los registros sin cambiar la estructura previamente. Esta característica es particularmente beneficiosa cuando se trata de datos no uniformes o campos personalizados.
+		Las bases de datos NoSQL también funcionan sin esquemas fijos, lo que significa que se pueden agregar campos a los registros sin tener que definir ni modificar la estructura previamente. Esta característica es particularmente beneficiosa cuando se trata de datos no uniformes o campos personalizados.
 		
 		\subsection{Modelos de datos}
 		\subsubsection{Relacional}
 		Este modelo organiza los datos en tablas, cada una de las cuales representa una entidad específica. Las instancias individuales de una entidad se representan en las filas de la tabla, mientras que sus atributos o características se representan en las columnas.
 		
-		La capacidad de establecer relaciones entre las tablas es una característica esencial del modelo relacional. Esto se logra utilizando claves primarias y foráneas. Cada fila de una tabla es identificada por una clave primaria, mientras que una clave foránea conecta dos tablas a través de la clave primaria de otra tabla.
+		La capacidad de establecer relaciones entre las tablas es una característica esencial del modelo relacional. Esto se logra utilizando claves primarias y foráneas. Cada fila de una tabla es identificada por una clave primaria, mientras que una clave foránea referencia la clave primaria de otra tabla, conectando ambas.
 			\begin{figure}[h]
 			\centering
 			\includegraphics[width=1\textwidth]{dato_relacional.png}
@@ -1523,7 +1524,7 @@
 		
 		
 		\subsubsection{Aggregates}
-		Es una forma para organizar y modelar los datos en sistemas NoSQL, como en algunas bases de datos orientadas a documentos. Un agregado es una unidad de datos autocontenida coherente que representa una entidad o idea en el dominio del problema. Se emplea para unir una variedad de objetos relacionados y sus relaciones en una sola unidad lógica.
+		Es una forma de organizar y modelar los datos en sistemas NoSQL, como en algunas bases de datos orientadas a documentos. Un agregado es una unidad de datos coherente y autocontenida que representa una entidad o idea en el dominio del problema. Se emplea para unir una variedad de objetos relacionados y sus relaciones en una sola unidad lógica.
 		
 		Permite romper la estructura limitada de las bases de datos relacionales y manipular los datos en unidades más complejas. Para organizar los datos de manera más adaptable y representar entidades relacionadas como una sola, se pueden anidar tuplas y listas de valores o tuplas.
 		
@@ -1535,7 +1536,7 @@
 		
 		\paragraph{Data models}
 		\begin{itemize}
-			\item {\textbf{Key-Value \& Document}}: Los aggregates se identifican (indexan) utilizando una clave o una identificación. En el modelo de Key-Value, el aggregate es opaco para la base de datos; por lo tanto, la base de datos simplemente trata el agregado como un gran "blob" sin estructura interna. Por otro lado, la base de datos impone condiciones y estructuras específicas para los aggregates en el modelo Documento, lo que permite un mayor acceso a través de consultas e índices relacionados con campos específicos.
+			\item {\textbf{Key-Value \& Document}}: Los aggregates se identifican (indexan) utilizando una clave o una identificación. En el modelo de Key-Value, el aggregate es opaco para la base de datos; por lo tanto, la base de datos simplemente trata el agregado como un gran ``blob'' sin estructura interna. Por otro lado, la base de datos impone condiciones y estructuras específicas para los aggregates en el modelo Documento, lo que permite un mayor acceso a través de consultas e índices relacionados con campos específicos.
 			
 			\item {\textbf{Key-Column-Family}}: Es una variante que organiza los aggregates utilizando una estructura de dos niveles. La primera clave identifica la fila o el conjunto de interés, y también se puede elegir la columna dentro del conjunto. Una familia de columnas incluye cada columna, y se supone que los datos de una familia de columnas se acceden normalmente en forma conjunta. Este modelo, que se basa en BigTable de Google, permite un almacenamiento optimizado para usos particulares.
 		\end{itemize}
@@ -1543,7 +1544,7 @@
 		\subsubsection{Sharding}\label{sec:sharding_nosql}
 		Es un método que permite a los usuarios acceder a diferentes partes de los datos en servidores individuales para reducir la carga y mejorar el rendimiento al distribuir diferentes partes de los datos en diferentes servidores. En resumen, la idea es colocar diferentes partes de los datos en diferentes servers.
 		
-		El caso ideal sería que cada usuario se comunique con un servidor específico para obtener una respuesta rápida y distribuir la carga de manera equitativa. Sin embargo, crear este caso ideal es difícil y requiere tener en cuenta una variedad de factores. Estos incluyen el criterio de distribución de datos entre nodos (como los apellidos A.D., E.F., R.Z.), el uso de zonas geográficas para reducir la latencia y el diseño de aggregates para agrupar datos relacionados.
+		El caso ideal sería que cada usuario se comunique con un servidor específico para obtener una respuesta rápida y distribuir la carga de manera equitativa. Sin embargo, crear este caso ideal es difícil y requiere tener en cuenta una variedad de factores. Estos incluyen el criterio de distribución de datos entre nodos (por ejemplo, por apellido: A--D, E--F, R--Z), el uso de zonas geográficas para reducir la latencia y el diseño de aggregates para agrupar datos relacionados.
 		
 		Los aggregates mejoran el rendimiento al acceder a datos juntos en el mismo servidor, pero también pueden reducir la robustez porque una falla de nodo puede causar la indisponibilidad parcial de datos.
 		
@@ -1553,10 +1554,10 @@
 		
 		Es un enfoque en el que un nodo se designa como el master o primario y recibe todas las operaciones de actualización. Los demás nodos son esclavos o secundarios, y la información se replica en ellos a partir de las actualizaciones realizadas en el master.
 		
-		Esto permite escalar en escenarios de alto tráfico de lecturas porque se distribuyen entre los esclavos, lo que alivia la carga del master debido a la reducción de lecturas. Además, mejora la resistencia a fallos porque otros nodos pueden seguir leyendo si un nodo falla. Sin embargo, como el master es un solo punto de falla, se debe tener un plan para restaurarlo en caso de falla.
+		Esto permite escalar en escenarios de alto tráfico de lecturas porque se distribuyen entre los esclavos, lo que alivia la carga del master debido a la reducción de lecturas. Además, mejora la resistencia a fallos de lectura: si el master falla, los esclavos pueden seguir atendiendo lecturas. Sin embargo, como el master es un solo punto de falla, se debe tener un plan para restaurarlo en caso de falla.
 		
 		\subsubsection{Peer-to-Peer Replication}
-		Es una táctica que aborda el problema del único punto de falla en la Master-Slave Replication. Este método no tiene un nodo principal y todas las réplicas son iguales. Cada nodo puede usar operaciones de lectura y escritura. Aunque esto mejora la resistencia a fallos, todavía hay inconsistencias de lectura transitorias.
+		Es una táctica que aborda el problema del único punto de falla en la Master-Slave Replication. Este método no tiene un nodo principal y todas las réplicas son iguales. Todos los nodos aceptan operaciones de lectura y escritura. Aunque esto mejora la resistencia a fallos, todavía hay inconsistencias de lectura transitorias.
 		
 		Sin un nodo central, pueden surgir conflictos de escritura cuando dos o más usuarios modifican el mismo registro al mismo tiempo en nodos diferentes. 
 		
@@ -1581,7 +1582,7 @@
 		Los enfoques optimistas, por otro lado, permiten que los conflictos ocurran pero los detectan y corrigen posteriormente. 
 		Algunas tácticas optimistas comunes incluyen:
 		\begin{enumerate}
-			\item {\textbf{Conditional update}}: Cada usuario chequea el valor justo antes de actualizar, para ver si cambio
+			\item {\textbf{Conditional update}}: Cada usuario chequea el valor justo antes de actualizar, para ver si cambió
 			luego de su última lectura.
 			
 			\item {\textbf{Almacenamiento de ambos updates}}: Almacenar ambos updates, indicar si se produce un conflicto, solicitar
@@ -1597,13 +1598,13 @@
 		
 		Las transacciones en las bases de datos relacionales aseguran que un usuario lea los dos cambios realizados por A juntos o ninguno, lo que garantiza la consistencia lógica. Sin embargo, las cosas pueden ser diferentes en las bases de datos NoSQL, donde se utilizan actualizaciones atómicas a nivel de aggregates.
 		
-		Por ejemplo, en NoSQL, varios elementos de datos, incluidos precios de envío, ordenes y ítems, podrían formar parte del mismo aggregate. Si estos datos se almacenan en diferentes aggregates, puede haber una ventana de tiempo, también conocida como ventana de inconsistencia (inconsistency window), en la que se leerían valores inconsistentes.
+		Por ejemplo, en NoSQL, varios elementos de datos, incluidos precios de envío, órdenes e ítems, podrían formar parte del mismo aggregate. Si estos datos se almacenan en diferentes aggregates, puede haber una ventana de tiempo, también conocida como ventana de inconsistencia (inconsistency window), en la que se leerían valores inconsistentes.
 		
-		La replicación en sistemas distribuidos aumenta la ventana de inconsistencia, lo que afecta la consistencia lógica. Sin embargo, en muchos sistemas NoSQL se utiliza la consistencia eventual, lo que significa que tanto el usuario B como el usuario C leerán el valor correcto con el tiempo si no hay más actualizaciones. Esto se logra al permitir que las réplicas se establezcan con el tiempo.
+		La replicación en sistemas distribuidos aumenta la ventana de inconsistencia, lo que afecta la consistencia lógica. Sin embargo, en muchos sistemas NoSQL se utiliza la consistencia eventual, lo que significa que, si no hay más actualizaciones, todos los usuarios terminarán leyendo el valor correcto. Esto se logra al permitir que las réplicas converjan con el tiempo.
 		
 		
 		\subsubsection{Teorema CAP}
-		El teorema CAP \footnote{también conocido como el Teorema de Brewer}, establece que en un sistema distribuido, es imposible garantizar simultáneamente las tres propiedades siguientes: Consistencia, Disponibilidad y Tolerancia al particionado. De acuerdo con el teorema, un sistema distribuido solo puede elegir dos de estas propiedades, pero no puede cumplir las tres al mismo tiempo.
+		El teorema CAP\footnote{También conocido como el Teorema de Brewer.} establece que en un sistema distribuido, es imposible garantizar simultáneamente las tres propiedades siguientes: Consistencia, Disponibilidad y Tolerancia al particionado. De acuerdo con el teorema, un sistema distribuido solo puede elegir dos de estas propiedades, pero no puede cumplir las tres al mismo tiempo.
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.5\textwidth]{teorema_cap.png}
@@ -1612,11 +1613,11 @@
 		
 		\pagebreak
 		\begin{enumerate}
-			\item {\textbf{Consistencia}}: Todos los nodos deben garantizar la misma información al	mismo tiempo.
+			\item {\textbf{Consistencia}}: Todos los nodos deben ver la misma información al mismo tiempo.
 			
-			\item {\textbf{Disponibilidad}}: Cuando se hace	R/W en un nodo activo, este responde en tiempo acotado y sin errores.
+			\item {\textbf{Disponibilidad}}: Cuando se hace R/W en un nodo activo, este responde en tiempo acotado y sin errores.
 			
-			\item {\textbf{Tolerancia al particionado}}: ante una caída, el sistema sigue funcionando a pesar de que existan problemas de comunicación entre los nodos.
+			\item {\textbf{Tolerancia al particionado}}: El sistema sigue funcionando a pesar de que existan problemas de comunicación entre los nodos.
 		\end{enumerate}
 		
 		
@@ -1633,7 +1634,7 @@
 		\subsubsection{Transaction Script}
 		Es un patrón de diseño utilizado para gestionar la lógica de negocio de manera procedural o mediante funciones estáticas. En este patrón, cada acción o transacción se implementa como un procedimiento (script) independiente que procesa la entrada del usuario, accede a la base de datos, ejecuta la lógica del dominio y formatea el resultado para su presentación en la interfaz de usuario.
 		\subsubsection{Domain Model}
-		Es un enfoque de diseño orientado an objetos que se utiliza para representar y administrar la lógica comercial mediante objetos que reflejan las ideas del dominio del problema. Este patrón representa una clase para cada concepto o entidad del dominio, y cada instancia de la clase representa una ocurrencia específica del concepto.
+		Es un enfoque de diseño orientado a objetos que se utiliza para representar y administrar la lógica comercial mediante objetos que reflejan las ideas del dominio del problema. Este patrón representa una clase para cada concepto o entidad del dominio, y cada instancia de la clase representa una ocurrencia específica del concepto.
 		
 		Además, el Domain Model facilita la representación fiel del dominio del problema, lo que mejora la comprensión y mantenimiento del código. 
 		
@@ -1646,7 +1647,7 @@
 		
 		Además, una variedad de plataformas y lenguajes de programación ofrecen herramientas poderosas para trabajar con RecordSets, lo que facilita el manejo de los datos de la base de datos en la aplicación.
 		
-		No obstante, una de las desventajas de Table Module es que no aprovecha plenamente las ventajas de la programación orientada an objetos (OOP). Table Module no utiliza la herencia, el polimorfismo o la composición de objetos para representar conceptos de dominio, a diferencia de otros patrones de diseño orientados an objetos, como Domain Model. Por el contrario, su atención se centra en cómo están organizadas las tablas de la base de datos.
+		No obstante, una de las desventajas de Table Module es que no aprovecha plenamente las ventajas de la programación orientada a objetos (OOP). Table Module no utiliza la herencia, el polimorfismo o la composición de objetos para representar conceptos de dominio, a diferencia de otros patrones de diseño orientados a objetos, como Domain Model. Por el contrario, su atención se centra en cómo están organizadas las tablas de la base de datos.
 		
 		La capacidad de los Table Module para generar duplicación de código es otra desventaja, ya que cada módulo contiene lógica específica para una entidad de datos específica. A medida que crece la aplicación, esto puede dificultar el mantenimiento y la escalabilidad del código.
 		
@@ -1663,17 +1664,17 @@
 			
 			
 			
-			\item {\textbf{Mapper (Base Pattern)}}:  Es un objeto que establece la comunicación entre dos objetos independientes. Su objetivo es transferir datos entre estos objetos
+			\item {\textbf{Mapper (Base Pattern)}}:  Es un objeto que establece la comunicación entre dos objetos independientes. Su objetivo es transferir datos entre estos objetos.
 			
 			\item {\textbf{Table Data Gateway}}: Este objeto actúa como un gateway para una tabla de base de datos, manejando todas las filas de la tabla. Se utiliza comúnmente en patrones como Transaction Script o Table Module.
 
-            \item {\textbf{Row Data Gateway}}: Este objeto actúa como un gateway para un solo registro (fila) en una fuente de datos, teniendo una instancia por cada fila. También se emplea en patrones Transaction Script.
+            \item {\textbf{Row Data Gateway}}: Este objeto actúa como un gateway para un solo registro (fila) en una fuente de datos, teniendo una instancia por cada fila. También se emplea comúnmente con Transaction Script.
 			
-			\item {\textbf{Data Mapper}}: Es un objeto que envuelve una fila en una tabla o vista de una base de datos y encapsula el acceso a la base de datos, añadiendo lógica de dominio a esos datos. 
+			\item {\textbf{Data Mapper}}: Es una capa de mappers que transfiere datos entre los objetos en memoria y la base de datos, manteniéndolos independientes entre sí y del propio mapper.
 			
 			
 			
-			\item {\textbf{Active Record}}: ante una caída, el sistema sigue funcionando a pesar de que existan problemas de comunicación entre los nodos.
+			\item {\textbf{Active Record}}: Es un objeto que envuelve una fila en una tabla o vista de una base de datos y encapsula el acceso a la base de datos, añadiendo lógica de dominio a esos datos.
 		\end{enumerate}
 		
 		
@@ -1691,7 +1692,7 @@
 			
 		\end{enumerate}
 
-		\paragraph{jerarquías de herencia}
+		\paragraph{Jerarquías de herencia}
 		
 			\begin{enumerate}
 				\item {\textbf{Single Table Inheritance}}: Representa una jerarquía de clases de herencia como una única tabla en la base de datos que contiene columnas para todos los campos de las diferentes clases.				
@@ -1709,9 +1710,9 @@
 		Algunos patrones de persistencia de comportamiento comunes son los siguientes:
 		
 			\begin{enumerate}
-			\item {\textbf{Lazy Load}}: Es un patrón que permite cargar los datos de un objeto de manera diferida, es decir, solo cuando son necesarios. En lugar de cargar todos los datos de un objeto de inmediato, el objeto carga los datos a medida que se accede a ellos
+			\item {\textbf{Lazy Load}}: Es un patrón que permite cargar los datos de un objeto de manera diferida, es decir, solo cuando son necesarios. En lugar de cargar todos los datos de un objeto de inmediato, el objeto carga los datos a medida que se accede a ellos.
 			
-			\item {\textbf{Unit of Work}}: Sirve para agrupar todas las operaciones relacionadas con una transacción de negocio en una única unidad lógica. Mantiene una lista de objetos afectados por la transacción y coordina la escritura de los cambios y la resolución de problemas de concurrencia
+			\item {\textbf{Unit of Work}}: Sirve para agrupar todas las operaciones relacionadas con una transacción de negocio en una única unidad lógica. Mantiene una lista de objetos afectados por la transacción y coordina la escritura de los cambios y la resolución de problemas de concurrencia.
 			
 			
 			\item {\textbf{Identity Map}}: Asegura que cada objeto se cargue solo una vez en memoria manteniendo una tabla hash (mapa) que almacena todos los objetos cargados.
@@ -1726,13 +1727,13 @@
   \section{Preguntas que me hicieron en el final}
   Si te toca Christian, muy probablemente te va a pedir definiciones. Si te toca Guille, te va a hacer pensar, pero es un tipazo.
    \subsection{Preguntas de Christian}
-    \subsubsection{¿Qué es una SLA?}
+    \subsubsection{¿Qué es un SLA?}
     Respuesta - link: \textbf{~\nameref{sec:sla}}
 
     \subsubsection{¿Cuál es la diferencia entre escalabilidad y elasticidad?}
 
     La diferencia es que la escalabilidad es la capacidad del sistema para adaptarse al aumento de usuarios, transacciones y niveles de actividad, entre otros factores. 
-    Y la Elasticidad se refiere a la capacidad de un sistema para adaptarse y ajustar sus recursos de manera dinámica y automática en respuesta a cambios en la carga de trabajo o demanda.
+    En cambio, la elasticidad se refiere a la capacidad de un sistema para adaptarse y ajustar sus recursos de manera dinámica y automática en respuesta a cambios en la carga de trabajo o demanda.
 
 
     \subsubsection{¿Qué dice la regla de los 5 9's?}
@@ -1747,11 +1748,11 @@
     
     \subsubsection{¿Cuáles son las tácticas para la disponibilidad?}
     
-    Respuesta - link: Network perfomance - \textbf{~\nameref{sec:tacticas_disponibilidad}}
+    Respuesta - link: \textbf{~\nameref{sec:tacticas_disponibilidad}}
 
-    \subsubsection{¿Cómo se pueden relacionar la arquitectura \textbf{stateless} con un \textbf{Load Balancer}?}
+    \subsubsection{¿Cómo se puede relacionar la arquitectura \textbf{stateless} con un \textbf{Load Balancer}?}
     
-    Respuesta - link: 3-er párrafo - \textbf{~\nameref{sec:load_balancer}}
+    Respuesta - link: tercer párrafo - \textbf{~\nameref{sec:load_balancer}}
 
     \subsubsection{¿Qué es la visibilidad?}
     Respuesta - link: \textbf{~\nameref{sec:visibilidad}}
@@ -1772,22 +1773,22 @@
    \subsection{Preguntas de Guille}
    
    \subsubsection{Si tuvieras un sistema como WhatsApp ¿qué atributos de calidad pensás que prioriza?}
-    Acá la podes chamuyar, yo dije que priorizaba los siguientes: 
+    Acá la podés chamuyar, yo dije que priorizaba los siguientes:
     \begin{itemize}
         \item Disponibilidad
-        \item Perfomance
+        \item Performance
         \item Seguridad
         \item Portabilidad
     \end{itemize}
 
-  \subsubsection{Si tuvieras otro sistema como un Home Banking ¿prioriza los mismo atributos que Whatsapp? ¿Cuáles cambia?}
-    Acá haces lo mismo, la podes chamuyar, yo dije que no, no prioriza las mismas, dije que priorizaba los siguientes: 
+  \subsubsection{Si tuvieras otro sistema como un Home Banking ¿prioriza los mismos atributos que WhatsApp? ¿Cuáles cambia?}
+    Acá hacés lo mismo, la podés chamuyar. Yo dije que no, que no prioriza los mismos, y que priorizaba los siguientes:
     \begin{itemize}
         \item Seguridad
-        \item disponibilidad
+        \item Disponibilidad
     \end{itemize}
 
-    Porque realmente no importa si el homebanking es perfomante o no, como tambien con la portabilidad. 
+    Porque realmente no importa tanto si el home banking es performante o no, y lo mismo pasa con la portabilidad.
 
 
   \subsubsection{¿Técnicas de disponibilidad?}
@@ -1799,20 +1800,20 @@
   \subsubsection{Que un sistema sea stateless ¿beneficia a la escalabilidad? ¿O la perjudica? }
     Respuesta - link: \textbf{~\nameref{sec:escalabilidad_tacticas}}
 
-  \subsubsection{¿Qué es la HyperMedia en Rest?}
+  \subsubsection{¿Qué es la HyperMedia en REST?}
     Respuesta - link: \textbf{~\nameref{sec:hypermedia}}
     
-  \subsubsection{¿Cuales son los riesgos de usar Cloud Computing?}
+  \subsubsection{¿Cuáles son los riesgos de usar Cloud Computing?}
   El consumidor y el proveedor, con acceso privilegiado, tienen la responsabilidad de proteger sus datos. La dependencia de SLAs y la falta de controlabilidad en comparación con soluciones on-premise son problemas. La transferencia de datos entre proveedores cloud puede ser difícil, y las implicaciones legales, como la ubicación de datos y las leyes locales, plantean problemas. Debido a las leyes de ciertas jurisdicciones, existe el peligro de revelación no autorizada.
 
   \subsubsection{¿Qué es el auto-scaling? ¿Qué atributos de calidad favorece?}
     Respuesta - link: \textbf{~\nameref{sec:auto_scaling}}
 
-  \subsubsection{¿Por qué implementaria colas de mensajes entre los componentes?}
+  \subsubsection{¿Por qué implementaría colas de mensajes entre los componentes?}
   
-  Permiten el desacoplamiento entre componentes, lo que facilita la operación independiente y mejora la flexibilidad. Además, al procesar mensajes concurrentemente, administrar cargas variables y mejorar la capacidad de respuesta, promueven la escalabilidad horizontal. Al encolar y procesar mensajes lentamente, también son útiles para gestionar picos de carga, evitando la pérdida de datos o la degradación del rendimiento.
+  Permiten el desacoplamiento entre componentes, lo que facilita la operación independiente y mejora la flexibilidad. Además, al procesar mensajes concurrentemente, administrar cargas variables y mejorar la capacidad de respuesta, promueven la escalabilidad horizontal. Al encolar los mensajes y procesarlos al ritmo del consumidor, también son útiles para gestionar picos de carga, evitando la pérdida de datos o la degradación del rendimiento.
 
-  \subsubsection{Si un worker agarra y procesa un pedido, y el worker falla en el medio ¿qué patrones podriamos implementar para arreglarlo?}
+  \subsubsection{Si un worker agarra y procesa un pedido, y el worker falla en el medio ¿qué patrones podríamos implementar para arreglarlo?}
 
   Respuesta - link: \textbf{~\nameref{sec:retry}} o \textbf{~\nameref{sec:circuit_breaker}}
 
@@ -1822,7 +1823,7 @@
   
   Con respecto a la segunda pregunta: 
 
-  Sí,  es posible sin sharding. La replicación crea copias de datos idénticas en varios nodos para garantizar la disponibilidad y la tolerancia a fallos. La replicación se enfoca en la redundancia y la disponibilidad, mientras que el sharding se enfoca en la distribución horizontal de los datos.
+  Sí, es posible sin sharding. La replicación crea copias de datos idénticas en varios nodos para garantizar la disponibilidad y la tolerancia a fallos. La replicación se enfoca en la redundancia y la disponibilidad, mientras que el sharding se enfoca en la distribución horizontal de los datos.
 
 
 
